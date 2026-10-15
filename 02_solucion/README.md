@@ -1,0 +1,14 @@
+# Exportaciones de la solución
+
+Aquí van las exportaciones de la solución de Power Platform (.zip).
+
+Nombre: `Preflight_<versión>_<AAAA-MM-DD>_<managed|unmanaged>.zip`. Al exportar, Power Platform lo llama `Preflight_0_1_0_1.zip`; se renombra antes de guardarlo aquí.
+
+Guarda siempre las dos versiones:
+
+- **No administrada** (`unmanaged`): para seguir desarrollando.
+- **Administrada** (`managed`): para instalar en pruebas y producción. La primera llegará con la v1.0.
+
+| Archivo | Versión | Tipo | Fecha | Contenido |
+|---|---|---|---|---|
+| Preflight_0.1.0.1_2026-10-15_unmanaged.zip | 0.1.0.1 | No administrada | 2026-10-15 | Solución con las variables de entorno pft_VersionPreflight (0.1.0) y pft_VersionReglas (0.0.0), solo valor predeterminado |
