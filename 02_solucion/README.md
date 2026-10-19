@@ -12,3 +12,4 @@ Guarda siempre las dos versiones:
 | Archivo | Versión | Tipo | Fecha | Contenido |
 |---|---|---|---|---|
 | Preflight_0.1.0.1_2026-10-15_unmanaged.zip | 0.1.0.1 | No administrada | 2026-10-15 | Solución con las variables de entorno pft_VersionPreflight (0.1.0) y pft_VersionReglas (0.0.0), solo valor predeterminado |
+| Preflight_0.1.0.2_2026-10-19_unmanaged.zip | 0.1.0.2 | No administrada | 2026-10-19 | Añade el agente Agent Tower vacío (pft_AgentTower, arnés estándar, español) con sus 13 temas del sistema |
