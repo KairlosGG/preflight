@@ -1,0 +1,11 @@
+<botcomponent schemaname="pft_AgentTower.GlobalVariableComponent.P09_CriterioRetirada">
+  <componenttype>12</componenttype>
+  <description>Métrica y umbral para retirar el agente a los 90 días. Pregunta 9 de la entrevista de Preflight.</description>
+  <iscustomizable>0</iscustomizable>
+  <name>P09_CriterioRetirada</name>
+  <parentbotid>
+    <schemaname>pft_AgentTower</schemaname>
+  </parentbotid>
+  <statecode>0</statecode>
+  <statuscode>1</statuscode>
+</botcomponent>

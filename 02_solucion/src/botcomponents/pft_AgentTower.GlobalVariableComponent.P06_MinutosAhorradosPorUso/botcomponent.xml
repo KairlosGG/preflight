@@ -1,0 +1,11 @@
+<botcomponent schemaname="pft_AgentTower.GlobalVariableComponent.P06_MinutosAhorradosPorUso">
+  <componenttype>12</componenttype>
+  <description>Minutos que ahorra cada uso del agente. Pregunta 6 de la entrevista de Preflight.</description>
+  <iscustomizable>0</iscustomizable>
+  <name>P06_MinutosAhorradosPorUso</name>
+  <parentbotid>
+    <schemaname>pft_AgentTower</schemaname>
+  </parentbotid>
+  <statecode>0</statecode>
+  <statuscode>1</statuscode>
+</botcomponent>

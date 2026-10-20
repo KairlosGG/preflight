@@ -21,6 +21,24 @@ beginDialog:
         - variable: Global.P03_Propietario
           value: =Blank()
 
+        - variable: Global.P04_UsuariosMes
+          value: =Blank()
+
+        - variable: Global.P05_UsuariosConLicencia
+          value: =Blank()
+
+        - variable: Global.P06_MinutosAhorradosPorUso
+          value: =Blank()
+
+        - variable: Global.P07_UsosPorPersonaMes
+          value: =Blank()
+
+        - variable: Global.P08_CosteHoraEUR
+          value: =Blank()
+
+        - variable: Global.P09_CriterioRetirada
+          value: =Blank()
+
     - kind: SetVariable
       id: setVariable_Pexg1I
       displayName: P00 Solicitud inicial
@@ -37,12 +55,17 @@ beginDialog:
       displayName: Ir a bloque A
       dialog: pft_AgentTower.topic.EntrevistaAIdentificacin
 
+    - kind: BeginDialog
+      id: iHVnBV
+      displayName: Ir a bloque B
+      dialog: pft_AgentTower.topic.EntrevistaBValor
+
     - kind: SendActivity
       id: sendActivity_cyzR8L
       displayName: Cierre provisional
       activity: |-
-        Identificación registrada para {Global.P01_NombreAgente} ({Global.P01_Area}).
-        Los bloques de valor, funcionamiento y riesgo todavía están en construcción, así que la evaluación termina aquí por ahora.
+        Identificación y valor registrados para {Global.P01_NombreAgente} ({Global.P01_Area}).
+        Los bloques de funcionamiento y riesgo todavía están en construcción, así que la evaluación termina aquí por ahora.
 
     - kind: SetVariable
       id: setVariable_cLXHDL

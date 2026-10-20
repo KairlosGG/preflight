@@ -1,0 +1,6 @@
+kind: Variable
+name: P09_CriterioRetirada
+scope: Conversation
+isExternalInitializationAllowed: false
+isOutputToExternalCallers: false
+initializationTimeoutInMilliseconds: 0

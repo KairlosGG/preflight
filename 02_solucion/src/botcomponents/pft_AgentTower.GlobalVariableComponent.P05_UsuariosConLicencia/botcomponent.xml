@@ -1,0 +1,11 @@
+<botcomponent schemaname="pft_AgentTower.GlobalVariableComponent.P05_UsuariosConLicencia">
+  <componenttype>12</componenttype>
+  <description>Usuarios con licencia de Microsoft 365 Copilot entre los que usarán el agente. Pregunta 5 de la entrevista de Preflight.</description>
+  <iscustomizable>0</iscustomizable>
+  <name>P05_UsuariosConLicencia</name>
+  <parentbotid>
+    <schemaname>pft_AgentTower</schemaname>
+  </parentbotid>
+  <statecode>0</statecode>
+  <statuscode>1</statuscode>
+</botcomponent>

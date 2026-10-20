@@ -1,0 +1,11 @@
+<botcomponent schemaname="pft_AgentTower.topic.EntrevistaBValor">
+  <componenttype>9</componenttype>
+  <description>Bloque B de la entrevista de Preflight: preguntas 4 a 9 (usuarios, licencias de Microsoft 365 Copilot, minutos ahorrados, usos, coste por hora y criterio de retirada). Solo se ejecuta cuando lo llama el tema Evaluar un agente.</description>
+  <iscustomizable>0</iscustomizable>
+  <name>Entrevista B Valor</name>
+  <parentbotid>
+    <schemaname>pft_AgentTower</schemaname>
+  </parentbotid>
+  <statecode>0</statecode>
+  <statuscode>1</statuscode>
+</botcomponent>

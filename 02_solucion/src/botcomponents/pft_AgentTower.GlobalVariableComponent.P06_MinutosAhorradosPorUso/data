@@ -1,0 +1,6 @@
+kind: Variable
+name: P06_MinutosAhorradosPorUso
+scope: Conversation
+isExternalInitializationAllowed: false
+isOutputToExternalCallers: false
+initializationTimeoutInMilliseconds: 0

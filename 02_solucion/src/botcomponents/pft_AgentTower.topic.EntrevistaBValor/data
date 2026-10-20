@@ -1,0 +1,97 @@
+kind: AdaptiveDialog
+beginDialog:
+  kind: OnRedirect
+  id: main
+  actions:
+    - kind: AdaptiveCardPrompt
+      id: 67QqXG
+      displayName: Tarjeta B Valor
+      card: |-
+        ={
+          type: "AdaptiveCard",
+          '$schema': "http://adaptivecards.io/schemas/adaptive-card.json",
+          version: "1.5",
+          body: [
+            { type: "TextBlock", text: "Valor del agente", weight: "Bolder", size: "Medium", wrap: true },
+            { type: "TextBlock", text: "Usa estimaciones razonables. Con estos datos se calculan el valor mensual y el coste en Copilot Credits.", wrap: true, isSubtle: true },
+            { type: "Input.Number", id: "usuariosMes", label: "¿Cuántas personas lo usarán al mes?", value: Global.P04_UsuariosMes, min: 1, max: 1000000, isRequired: true, errorMessage: "Indica un número entre 1 y 1.000.000." },
+            { type: "Input.Number", id: "usuariosConLicencia", label: "De ellas, ¿cuántas tienen licencia de Microsoft 365 Copilot?", value: Global.P05_UsuariosConLicencia, min: 0, max: 1000000, isRequired: true, errorMessage: "Indica un número entre 0 y 1.000.000. Si no lo sabes, pon 0." },
+            { type: "Input.Number", id: "minutosAhorradosPorUso", label: "¿Cuántos minutos ahorra cada uso?", value: Global.P06_MinutosAhorradosPorUso, min: 0, max: 480, isRequired: true, errorMessage: "Indica un número de minutos entre 0 y 480." },
+            { type: "Input.Number", id: "usosPorPersonaMes", label: "¿Cuántas veces lo usará cada persona al mes?", value: Global.P07_UsosPorPersonaMes, min: 1, max: 1000, isRequired: true, errorMessage: "Indica un número entre 1 y 1.000." },
+            { type: "Input.Number", id: "costeHoraEUR", label: "Coste por hora cargado del perfil que lo usará (€)", value: Global.P08_CosteHoraEUR, min: 1, max: 500, isRequired: true, errorMessage: "Indica un importe entre 1 y 500 €." },
+            { type: "Input.Text", id: "criterioRetirada", label: "¿Qué métrica y umbral usarás para retirarlo a los 90 días?", value: Global.P09_CriterioRetirada, placeholder: "Ej.: menos de 50 consultas al mes", isMultiline: true, maxLength: 300, isRequired: true, errorMessage: "Indica una métrica y un umbral." }
+          ],
+          actions: [
+            { type: "Action.Submit", title: "Confirmar y continuar", data: { actionSubmitId: "pft_bloqueB_confirmar" } }
+          ]
+        }
+      output:
+        binding:
+          actionSubmitId: Topic.actionSubmitId
+          costeHoraEUR: Global.P08_CosteHoraEUR
+          criterioRetirada: Global.P09_CriterioRetirada
+          minutosAhorradosPorUso: Global.P06_MinutosAhorradosPorUso
+          usosPorPersonaMes: Global.P07_UsosPorPersonaMes
+          usuariosConLicencia: Global.P05_UsuariosConLicencia
+          usuariosMes: Global.P04_UsuariosMes
+
+      outputType:
+        properties:
+          actionSubmitId: String
+          costeHoraEUR: Number
+          criterioRetirada: String
+          minutosAhorradosPorUso: Number
+          usosPorPersonaMes: Number
+          usuariosConLicencia: Number
+          usuariosMes: Number
+
+    - kind: ConditionGroup
+      id: conditionGroup_YynfpU
+      conditions:
+        - id: conditionItem_SdT6qq
+          condition: =Global.P05_UsuariosConLicencia > Global.P04_UsuariosMes
+          displayName: Coherencia de usuarios
+          actions:
+            - kind: AdaptiveCardPrompt
+              id: e5cMGm
+              displayName: Corregir usuarios
+              card: |-
+                =   {
+                     type: "AdaptiveCard",
+                     '$schema': "http://adaptivecards.io/schemas/adaptive-card.json",
+                     version: "1.5",
+                     body: [
+                       { type: "TextBlock", text: "Revisa los usuarios", weight: "Bolder", size: "Medium", wrap: true },
+                       { type: "TextBlock", text: "Los usuarios con licencia de Microsoft 365 Copilot no pueden ser más que las personas que usarán el agente.", wrap: true, color: "Attention" },
+                       { type: "Input.Number", id: "usuariosMes", label: "¿Cuántas personas lo usarán al mes?", value: Global.P04_UsuariosMes, min: 1, max: 1000000, isRequired: true, errorMessage: "Indica un número entre 1 y 1.000.000." },
+                       { type: "Input.Number", id: "usuariosConLicencia", label: "De ellas, ¿cuántas tienen licencia de Microsoft 365 Copilot?", value: Global.P05_UsuariosConLicencia, min: 0, max: 1000000, isRequired: true, errorMessage: "Indica un número entre 0 y 1.000.000. Si no lo sabes, pon 0." }
+                     ],
+                     actions: [
+                       { type: "Action.Submit", title: "Corregir y continuar", data: { actionSubmitId: "pft_bloqueB_corregirUsuarios" } }
+                     ]
+                   }
+              output:
+                binding:
+                  actionSubmitId: Topic.actionSubmitId
+                  usuariosConLicencia: Global.P05_UsuariosConLicencia
+                  usuariosMes: Global.P04_UsuariosMes
+
+              outputType:
+                properties:
+                  actionSubmitId: String
+                  usuariosConLicencia: Number
+                  usuariosMes: Number
+
+            - kind: ConditionGroup
+              id: conditionGroup_GtipWe
+              conditions:
+                - id: conditionItem_FioPq0
+                  condition: =Global.P05_UsuariosConLicencia > Global.P04_UsuariosMes
+                  displayName: Sigue la incoherencia
+                  actions:
+                    - kind: GotoAction
+                      id: pmOKjk
+                      actionId: e5cMGm
+
+inputType: {}
+outputType: {}

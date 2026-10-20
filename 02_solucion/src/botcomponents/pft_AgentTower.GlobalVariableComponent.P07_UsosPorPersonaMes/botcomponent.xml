@@ -1,0 +1,11 @@
+<botcomponent schemaname="pft_AgentTower.GlobalVariableComponent.P07_UsosPorPersonaMes">
+  <componenttype>12</componenttype>
+  <description>Usos del agente por persona al mes. Pregunta 7 de la entrevista de Preflight.</description>
+  <iscustomizable>0</iscustomizable>
+  <name>P07_UsosPorPersonaMes</name>
+  <parentbotid>
+    <schemaname>pft_AgentTower</schemaname>
+  </parentbotid>
+  <statecode>0</statecode>
+  <statuscode>1</statuscode>
+</botcomponent>
