@@ -1,0 +1,12 @@
+<botcomponent schemaname="pft_AgentTower.topic.EndofConversation">
+  <componenttype>9</componenttype>
+  <description>Este tema del sistema solo se desencadena mediante una acción de redireccionamiento
+y guía al usuario por el proceso de valoración de su conversación con el agente.</description>
+  <iscustomizable>0</iscustomizable>
+  <name>Fin de la conversación</name>
+  <parentbotid>
+    <schemaname>pft_AgentTower</schemaname>
+  </parentbotid>
+  <statecode>0</statecode>
+  <statuscode>1</statuscode>
+</botcomponent>

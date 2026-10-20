@@ -13,3 +13,8 @@ Guarda siempre las dos versiones:
 |---|---|---|---|---|
 | Preflight_0.1.0.1_2026-10-15_unmanaged.zip | 0.1.0.1 | No administrada | 2026-10-15 | Solución con las variables de entorno pft_VersionPreflight (0.1.0) y pft_VersionReglas (0.0.0), solo valor predeterminado |
 | Preflight_0.1.0.2_2026-10-19_unmanaged.zip | 0.1.0.2 | No administrada | 2026-10-19 | Añade el agente Agent Tower vacío (pft_AgentTower, arnés estándar, español) con sus 13 temas del sistema |
+| Preflight_0.1.0.3_2026-10-20_unmanaged.zip | 0.1.0.3 | No administrada | 2026-10-20 | Bienvenida con aviso legal, tema Evaluar un agente, bloque A de la entrevista con tarjeta de revisión y variables globales P00-P03 |
+
+## Fuente descomprimida
+
+La carpeta `src` contiene la última exportación descomprimida (YAML de temas y componentes). Se sustituye en cada versión para que GitHub muestre los cambios línea a línea. El zip sigue siendo lo que se importa.

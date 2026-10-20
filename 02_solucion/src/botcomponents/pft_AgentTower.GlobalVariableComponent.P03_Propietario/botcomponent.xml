@@ -1,0 +1,11 @@
+<botcomponent schemaname="pft_AgentTower.GlobalVariableComponent.P03_Propietario">
+  <componenttype>12</componenttype>
+  <description>Nombre y puesto del propietario de negocio del agente propuesto. Dato personal. Pregunta 3 de la entrevista de Preflight.</description>
+  <iscustomizable>0</iscustomizable>
+  <name>P03_Propietario</name>
+  <parentbotid>
+    <schemaname>pft_AgentTower</schemaname>
+  </parentbotid>
+  <statecode>0</statecode>
+  <statuscode>1</statuscode>
+</botcomponent>

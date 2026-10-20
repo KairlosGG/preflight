@@ -1,0 +1,11 @@
+<botcomponent schemaname="pft_AgentTower.topic.ThankYou">
+  <componenttype>9</componenttype>
+  <description>Este tema se desencadena cuando el usuario da las gracias.</description>
+  <iscustomizable>0</iscustomizable>
+  <name>Agradecimiento</name>
+  <parentbotid>
+    <schemaname>pft_AgentTower</schemaname>
+  </parentbotid>
+  <statecode>0</statecode>
+  <statuscode>1</statuscode>
+</botcomponent>

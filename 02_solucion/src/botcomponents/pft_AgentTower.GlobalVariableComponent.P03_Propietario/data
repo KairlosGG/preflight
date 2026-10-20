@@ -1,0 +1,6 @@
+kind: Variable
+name: P03_Propietario
+scope: Conversation
+isExternalInitializationAllowed: false
+isOutputToExternalCallers: false
+initializationTimeoutInMilliseconds: 0

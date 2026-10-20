@@ -1,0 +1,11 @@
+<botcomponent schemaname="pft_AgentTower.topic.Search">
+  <componenttype>9</componenttype>
+  <description>Cree respuestas generativas a partir de fuentes de conocimientos.</description>
+  <iscustomizable>0</iscustomizable>
+  <name>Potenciación de la conversación</name>
+  <parentbotid>
+    <schemaname>pft_AgentTower</schemaname>
+  </parentbotid>
+  <statecode>0</statecode>
+  <statuscode>1</statuscode>
+</botcomponent>

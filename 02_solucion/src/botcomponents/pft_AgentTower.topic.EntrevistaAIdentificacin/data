@@ -1,0 +1,85 @@
+kind: AdaptiveDialog
+beginDialog:
+  kind: OnRedirect
+  id: main
+  actions:
+    - kind: Question
+      id: question_Qr7ow7
+      displayName: P01a Nombre del agente
+      interruptionPolicy:
+        allowInterruption: true
+
+      variable: init:Global.P01_NombreAgente
+      prompt: ¿Qué nombre provisional tiene el agente que quieres construir?
+      entity: StringPrebuiltEntity
+
+    - kind: Question
+      id: question_ZBlzde
+      displayName: P01b Área
+      interruptionPolicy:
+        allowInterruption: true
+
+      variable: init:Global.P01_Area
+      prompt: ¿En qué área o departamento se va a usar?
+      entity: StringPrebuiltEntity
+
+    - kind: Question
+      id: odpDii
+      displayName: P02 Problema
+      interruptionPolicy:
+        allowInterruption: true
+
+      variable: init:Global.P02_Problema
+      prompt: En una frase, ¿qué problema resuelve el agente?
+      entity: StringPrebuiltEntity
+
+    - kind: Question
+      id: question_Ayl56G
+      displayName: P03 Propietario
+      interruptionPolicy:
+        allowInterruption: true
+
+      variable: init:Global.P03_Propietario
+      prompt: ¿Quién es el propietario de negocio del agente? Indica su nombre y su puesto.
+      entity: StringPrebuiltEntity
+
+    - kind: AdaptiveCardPrompt
+      id: 6B09iZ
+      displayName: Revisión A
+      card: |-
+        =   {
+             type: "AdaptiveCard",
+             '$schema': "http://adaptivecards.io/schemas/adaptive-card.json",
+             version: "1.5",
+             body: [
+               { type: "TextBlock", text: "Revisa la identificación", weight: "Bolder", size: "Medium", wrap: true },
+               { type: "TextBlock", text: "Corrige lo que necesites y pulsa Confirmar y continuar.", wrap: true, isSubtle: true },
+               { type: "TextBlock", text: "Solicitud inicial", weight: "Bolder", wrap: true, spacing: "Medium" },
+               { type: "TextBlock", text: Global.P00_SolicitudInicial, wrap: true, isSubtle: true },
+               { type: "Input.Text", id: "nombreAgente", label: "Nombre provisional del agente", value: Global.P01_NombreAgente, isRequired: true, errorMessage: "Indica el nombre del agente.", maxLength: 100 },
+               { type: "Input.Text", id: "area", label: "Área o departamento", value: Global.P01_Area, isRequired: true, errorMessage: "Indica el área o departamento.", maxLength: 100 },
+               { type: "Input.Text", id: "problema", label: "Problema que resuelve", value: Global.P02_Problema, isMultiline: true, isRequired: true, errorMessage: "Describe el problema en una frase.", maxLength: 500 },
+               { type: "Input.Text", id: "propietario", label: "Propietario de negocio (nombre y puesto)", value: Global.P03_Propietario, isRequired: true, errorMessage: "Indica el propietario de negocio.", maxLength: 150 }
+             ],
+             actions: [
+               { type: "Action.Submit", title: "Confirmar y continuar", data: { actionSubmitId: "pft_bloqueA_confirmar" } }
+             ]
+           }
+      output:
+        binding:
+          actionSubmitId: Topic.actionSubmitId
+          area: Global.P01_Area
+          nombreAgente: Global.P01_NombreAgente
+          problema: Global.P02_Problema
+          propietario: Global.P03_Propietario
+
+      outputType:
+        properties:
+          actionSubmitId: String
+          area: String
+          nombreAgente: String
+          problema: String
+          propietario: String
+
+inputType: {}
+outputType: {}

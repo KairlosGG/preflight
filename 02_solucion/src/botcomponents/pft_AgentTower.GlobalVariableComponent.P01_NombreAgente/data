@@ -1,0 +1,6 @@
+kind: Variable
+name: P01_NombreAgente
+scope: Conversation
+isExternalInitializationAllowed: false
+isOutputToExternalCallers: false
+initializationTimeoutInMilliseconds: 0

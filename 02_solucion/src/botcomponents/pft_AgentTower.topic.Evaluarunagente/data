@@ -1,0 +1,62 @@
+kind: AdaptiveDialog
+modelDescription: Evalúa una idea de agente antes de construirlo. Entrevista a la persona que lo propone y prepara una ficha con su valor de negocio, su coste estimado en Copilot Credits y su riesgo regulatorio. Úsalo cuando alguien quiera crear, proponer, construir o evaluar un agente o un copiloto. No responde preguntas generales sobre normativa ni sobre Copilot Studio. Si su salida answered es verdadera, el usuario ya ha recibido su respuesta en este tema y no hay que volver a responderle ni añadir nada.
+beginDialog:
+  kind: OnRecognizedIntent
+  id: main
+  intent: {}
+  actions:
+    - kind: SetMultipleVariables
+      id: setVariable_LgPzBQ
+      displayName: Vaciar respuestas anteriores
+      assignments:
+        - variable: Global.P01_NombreAgente
+          value: =Blank()
+
+        - variable: Global.P01_Area
+          value: =Blank()
+
+        - variable: Global.P02_Problema
+          value: =Blank()
+
+        - variable: Global.P03_Propietario
+          value: =Blank()
+
+    - kind: SetVariable
+      id: setVariable_Pexg1I
+      displayName: P00 Solicitud inicial
+      variable: Global.P00_SolicitudInicial
+      value: =System.Activity.Text
+
+    - kind: SendActivity
+      id: sendActivity_gZBlU2
+      displayName: Introducción
+      activity: "Te haré 19 preguntas en cuatro bloques: identificación, valor, funcionamiento y riesgo. Son unos 5 minutos. Empezamos por la identificación."
+
+    - kind: BeginDialog
+      id: 01xfk9
+      displayName: Ir a bloque A
+      dialog: pft_AgentTower.topic.EntrevistaAIdentificacin
+
+    - kind: SendActivity
+      id: sendActivity_cyzR8L
+      displayName: Cierre provisional
+      activity: |-
+        Identificación registrada para {Global.P01_NombreAgente} ({Global.P01_Area}).
+        Los bloques de valor, funcionamiento y riesgo todavía están en construcción, así que la evaluación termina aquí por ahora.
+
+    - kind: SetVariable
+      id: setVariable_cLXHDL
+      displayName: Marcar como respondido
+      variable: Topic.answered
+      value: true
+
+    - kind: CancelAllDialogs
+      id: gDhKRN
+
+inputType: {}
+outputType:
+  properties:
+    answered:
+      displayName: answered
+      description: Verdadero si el usuario ya ha recibido en este tema la respuesta completa de la evaluación. No hay que volver a responderle.
+      type: Boolean

@@ -1,0 +1,11 @@
+<botcomponent schemaname="pft_AgentTower.GlobalVariableComponent.P01_NombreAgente">
+  <componenttype>12</componenttype>
+  <description>Nombre provisional del agente propuesto. Pregunta 1 de la entrevista de Preflight.</description>
+  <iscustomizable>0</iscustomizable>
+  <name>P01_NombreAgente</name>
+  <parentbotid>
+    <schemaname>pft_AgentTower</schemaname>
+  </parentbotid>
+  <statecode>0</statecode>
+  <statuscode>1</statuscode>
+</botcomponent>

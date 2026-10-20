@@ -1,0 +1,11 @@
+<botcomponent schemaname="pft_AgentTower.topic.Evaluarunagente">
+  <componenttype>9</componenttype>
+  <description>Punto de entrada de la entrevista de Preflight. Llama a los bloques A, B, C y D y después genera la ficha.</description>
+  <iscustomizable>0</iscustomizable>
+  <name>Evaluar un agente</name>
+  <parentbotid>
+    <schemaname>pft_AgentTower</schemaname>
+  </parentbotid>
+  <statecode>0</statecode>
+  <statuscode>1</statuscode>
+</botcomponent>

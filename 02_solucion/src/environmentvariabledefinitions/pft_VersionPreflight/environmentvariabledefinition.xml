@@ -1,0 +1,14 @@
+<environmentvariabledefinition schemaname="pft_VersionPreflight">
+  <defaultvalue>0.1.0</defaultvalue>
+  <description default="Versión de Preflight que se registra en cada ficha para la trazabilidad.">
+    <label description="Versión de Preflight que se registra en cada ficha para la trazabilidad." languagecode="3082" />
+  </description>
+  <displayname default="Versión de Preflight">
+    <label description="Versión de Preflight" languagecode="3082" />
+  </displayname>
+  <introducedversion>0.1.0.0</introducedversion>
+  <iscustomizable>1</iscustomizable>
+  <isrequired>0</isrequired>
+  <secretstore>0</secretstore>
+  <type>100000000</type>
+</environmentvariabledefinition>

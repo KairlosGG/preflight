@@ -1,0 +1,23 @@
+kind: AdaptiveDialog
+beginDialog:
+  kind: OnConversationStart
+  id: main
+  actions:
+    - kind: SendActivity
+      id: sendMessage_M0LuhV
+      displayName: Bienvenida
+      activity:
+        text:
+          - Hola, soy {System.Bot.Name}. Antes de que construyas un agente en Microsoft 365, te hago una entrevista breve y te devuelvo una ficha con su valor de negocio, su coste estimado en Copilot Credits y su riesgo regulatorio.
+        speak:
+          - Hola y gracias por llamar a {System.Bot.Name}. Tenga en cuenta que algunas respuestas se generan mediante IA y puede ser necesario comprobar su precisión. ¿En qué puedo ayudarle?
+
+    - kind: SendActivity
+      id: sendActivity_2F9eDn
+      displayName: Aviso legal
+      activity: _Orientación preliminar generada con IA. No constituye asesoramiento jurídico ni evaluación de conformidad. La clasificación debe validarla una persona responsable._
+
+    - kind: SendActivity
+      id: sendActivity_D20IXR
+      displayName: Llamada a la acción
+      activity: Cuéntame en una frase qué agente quieres crear y empezamos la evaluación.

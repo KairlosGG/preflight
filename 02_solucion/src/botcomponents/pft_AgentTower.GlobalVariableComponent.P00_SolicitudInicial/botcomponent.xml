@@ -1,0 +1,11 @@
+<botcomponent schemaname="pft_AgentTower.GlobalVariableComponent.P00_SolicitudInicial">
+  <componenttype>12</componenttype>
+  <description>Mensaje con el que el usuario inició la evaluación, en sus propias palabras. Se guarda sin interpretar.</description>
+  <iscustomizable>0</iscustomizable>
+  <name>P00_SolicitudInicial</name>
+  <parentbotid>
+    <schemaname>pft_AgentTower</schemaname>
+  </parentbotid>
+  <statecode>0</statecode>
+  <statuscode>1</statuscode>
+</botcomponent>

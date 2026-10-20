@@ -1,0 +1,11 @@
+<botcomponent schemaname="pft_AgentTower.topic.EntrevistaAIdentificacin">
+  <componenttype>9</componenttype>
+  <description>Bloque A de la entrevista de Preflight: preguntas 1 a 3 (nombre y área del agente, problema que resuelve y propietario de negocio). Solo se ejecuta cuando lo llama el tema Evaluar un agente.</description>
+  <iscustomizable>0</iscustomizable>
+  <name>Entrevista A Identificación</name>
+  <parentbotid>
+    <schemaname>pft_AgentTower</schemaname>
+  </parentbotid>
+  <statecode>0</statecode>
+  <statuscode>1</statuscode>
+</botcomponent>
