@@ -1,0 +1,11 @@
+<botcomponent schemaname="pft_AgentTower.GlobalVariableComponent.R_DecisionRiesgo">
+  <componenttype>12</componenttype>
+  <description>Decisión propuesta por riesgo: no_construir, no_construir_sin_asesoria, revision_juridica, construir_con_aprobacion, construir_con_aviso_ia o construir. Regla de Preflight.</description>
+  <iscustomizable>0</iscustomizable>
+  <name>R_DecisionRiesgo</name>
+  <parentbotid>
+    <schemaname>pft_AgentTower</schemaname>
+  </parentbotid>
+  <statecode>0</statecode>
+  <statuscode>1</statuscode>
+</botcomponent>

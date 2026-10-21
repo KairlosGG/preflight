@@ -16,6 +16,7 @@ Guarda siempre las dos versiones:
 | Preflight_0.1.0.3_2026-10-20_unmanaged.zip | 0.1.0.3 | No administrada | 2026-10-20 | Bienvenida con aviso legal, tema Evaluar un agente, bloque A de la entrevista con tarjeta de revisión y variables globales P00-P03 |
 | Preflight_0.1.0.4_2026-10-20_unmanaged.zip | 0.1.0.4 | No administrada | 2026-10-20 | Bloque B (Valor) con tarjeta validada, regla de coherencia de usuarios con tarjeta de corrección y variables globales P04-P09 |
 | Preflight_0.1.0.5_2026-10-21_unmanaged.zip | 0.1.0.5 | No administrada | 2026-10-21 | Bloques C (Funcionamiento) y D (Riesgo) con una tarjeta cada uno, reglas de coherencia de P15 y P19, tarjeta de la excepción del art. 6.3 y variables globales P10-P19 y P15b |
+| Preflight_0.1.0.6_2026-10-21_unmanaged.zip | 0.1.0.6 | No administrada | 2026-10-21 | Motor de reglas deterministas (tema Clasificar riesgo, reglas 0.1.0) con variables R_*, pregunta de alcance P04b, observaciones P19b e interrupciones desactivadas en el bloque A |
 
 ## Fuente descomprimida
 

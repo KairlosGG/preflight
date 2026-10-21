@@ -14,6 +14,13 @@ beginDialog:
           body: [
             { type: "TextBlock", text: "Valor del agente", weight: "Bolder", size: "Medium", wrap: true },
             { type: "TextBlock", text: "Usa estimaciones razonables. Con estos datos se calculan el valor mensual y el coste en Copilot Credits.", wrap: true, isSubtle: true },
+            { type: "Input.ChoiceSet", id: "alcance", label: "¿Quién de la organización lo usará?", style: "expanded", isRequired: true, errorMessage: "Elige una opción.",
+              choices: [
+                { title: "Solo yo", value: "personal" },
+                { title: "Mi equipo", value: "equipo" },
+                { title: "Otros equipos o departamentos", value: "otros_equipos" },
+                { title: "Toda la organización", value: "organizacion" }
+              ] },
             { type: "Input.Number", id: "usuariosMes", label: "¿Cuántas personas lo usarán al mes?", value: Global.P04_UsuariosMes, min: 1, max: 1000000, isRequired: true, errorMessage: "Indica un número entre 1 y 1.000.000." },
             { type: "Input.Number", id: "usuariosConLicencia", label: "De ellas, ¿cuántas tienen licencia de Microsoft 365 Copilot?", value: Global.P05_UsuariosConLicencia, min: 0, max: 1000000, isRequired: true, errorMessage: "Indica un número entre 0 y 1.000.000. Si no lo sabes, pon 0." },
             { type: "Input.Number", id: "minutosAhorradosPorUso", label: "¿Cuántos minutos ahorra cada uso?", value: Global.P06_MinutosAhorradosPorUso, min: 0, max: 480, isRequired: true, errorMessage: "Indica un número de minutos entre 0 y 480." },
@@ -28,6 +35,7 @@ beginDialog:
       output:
         binding:
           actionSubmitId: Topic.actionSubmitId
+          alcance: Global.P04b_Alcance
           costeHoraEUR: Global.P08_CosteHoraEUR
           criterioRetirada: Global.P09_CriterioRetirada
           minutosAhorradosPorUso: Global.P06_MinutosAhorradosPorUso
@@ -38,6 +46,7 @@ beginDialog:
       outputType:
         properties:
           actionSubmitId: String
+          alcance: String
           costeHoraEUR: Number
           criterioRetirada: String
           minutosAhorradosPorUso: Number

@@ -1,0 +1,123 @@
+kind: AdaptiveDialog
+beginDialog:
+  kind: OnRedirect
+  id: main
+  actions:
+    - kind: SetVariable
+      id: pftCatalogo
+      displayName: Cargar catálogo
+      variable: Topic.Catalogo
+      value: |-
+        =[
+          { codigo: "art5_1a", referencia: "Art. 5.1.a AI Act: técnicas subliminales o manipuladoras, prohibido desde el 2/2/2025" },
+          { codigo: "art5_1b", referencia: "Art. 5.1.b AI Act: explotación de vulnerabilidades, prohibido desde el 2/2/2025" },
+          { codigo: "art5_1c", referencia: "Art. 5.1.c AI Act: puntuación social, prohibido desde el 2/2/2025" },
+          { codigo: "art5_1f", referencia: "Art. 5.1.f AI Act: reconocimiento de emociones en el trabajo o la educación, prohibido desde el 2/2/2025" },
+          { codigo: "art5_1g", referencia: "Art. 5.1.g AI Act: categorización biométrica de datos sensibles, prohibido desde el 2/2/2025" },
+          { codigo: "art5_1ba_bb", referencia: "Art. 5.1.ba y 5.1.bb AI Act (Reglamento 2026/1744): imágenes íntimas no consentidas y material de abuso sexual infantil, prohibido desde el 2/12/2026" },
+          { codigo: "biometria_otros", referencia: "Anexo III punto 1 y art. 50.3 AI Act: biometría o reconocimiento de emociones, requiere revisión jurídica" },
+          { codigo: "III_3a", referencia: "Anexo III 3.a AI Act: acceso o admisión a educación, alto riesgo desde el 2/12/2027" },
+          { codigo: "III_3b", referencia: "Anexo III 3.b AI Act: evaluación de resultados de aprendizaje, alto riesgo desde el 2/12/2027" },
+          { codigo: "III_3c", referencia: "Anexo III 3.c AI Act: nivel de educación adecuado, alto riesgo desde el 2/12/2027" },
+          { codigo: "III_3d", referencia: "Anexo III 3.d AI Act: vigilancia de conductas prohibidas en exámenes, alto riesgo desde el 2/12/2027" },
+          { codigo: "III_4a", referencia: "Anexo III 4.a AI Act: contratación o selección de personal, alto riesgo desde el 2/12/2027" },
+          { codigo: "III_4b", referencia: "Anexo III 4.b AI Act: condiciones laborales, promoción, despido, reparto de tareas o evaluación del rendimiento, alto riesgo desde el 2/12/2027" },
+          { codigo: "III_5a", referencia: "Anexo III 5.a AI Act: prestaciones y servicios públicos esenciales, alto riesgo desde el 2/12/2027" },
+          { codigo: "III_5b", referencia: "Anexo III 5.b AI Act: solvencia o calificación crediticia, alto riesgo desde el 2/12/2027" },
+          { codigo: "III_5c", referencia: "Anexo III 5.c AI Act: seguros de vida y salud, alto riesgo desde el 2/12/2027" },
+          { codigo: "III_5d", referencia: "Anexo III 5.d AI Act: emergencias y triaje, alto riesgo desde el 2/12/2027" },
+          { codigo: "III_otro", referencia: "Anexo III puntos 1, 2, 6, 7 u 8 AI Act: requiere revisión jurídica" }
+        ]
+
+    - kind: SetVariable
+      id: pftSeleccion
+      displayName: Preparar códigos marcados
+      variable: Topic.Seleccion
+      value: ="," & Substitute(Global.P15_AmbitosAnexoIII & "," & Global.P19_PracticasSensibles, " ", "") & ","
+
+    - kind: SetVariable
+      id: pftCategoria
+      displayName: Regla 1 Categoría principal
+      variable: Global.R_Categoria
+      value: |-
+        =If(
+          "art5_" in Global.P19_PracticasSensibles, "prohibido",
+          "III_otro" in Global.P15_AmbitosAnexoIII || "biometria_otros" in Global.P19_PracticasSensibles, "revision_juridica",
+          "III_" in Global.P15_AmbitosAnexoIII && Global.P17_Perfilado = "si", "alto_riesgo",
+          "III_" in Global.P15_AmbitosAnexoIII && StartsWith(Global.P15b_TareaArt6_3, "art6_3") && Global.P16_RevisionHumana = "si", "excepcion_6_3",
+          "III_" in Global.P15_AmbitosAnexoIII, "alto_riesgo",
+          "minimo"
+        )
+
+    - kind: SetVariable
+      id: pftTransp
+      displayName: Regla 2 Transparencia
+      variable: Global.R_Transparencia
+      value: =Global.P13_UsuariosExternos = "si" || Global.P18_PublicacionExterna = "sin_revision"
+
+    - kind: SetVariable
+      id: pftEIPD
+      displayName: Regla 3 EIPD
+      variable: Global.R_EIPD
+      value: =Global.P14_DatosPersonales <> "no"
+
+    - kind: SetVariable
+      id: pftArt22
+      displayName: Regla 4 Art 22 RGPD
+      variable: Global.R_Art22
+      value: ="III_" in Global.P15_AmbitosAnexoIII && Global.P16_RevisionHumana = "no"
+
+    - kind: SetVariable
+      id: pftZona
+      displayName: Regla 5 Zona
+      variable: Global.R_Zona
+      value: |-
+        =If(
+          Global.R_Categoria = "prohibido", "No aplica",
+          Or(Global.R_Categoria = "alto_riesgo", Global.R_Categoria = "revision_juridica", Global.P04b_Alcance = "organizacion", Global.P13_UsuariosExternos = "si", Global.P10_Acciones = "acciones_autonomas"), "Professional",
+          Or(Global.R_Categoria = "excepcion_6_3", Global.P04b_Alcance = "otros_equipos", Global.P10_Acciones = "acciones_confirmadas", Global.P14_DatosPersonales <> "no", "graph" in Global.P11_Fuentes, "web" in Global.P11_Fuentes, "sistemas" in Global.P11_Fuentes, Global.R_Transparencia), "Partnered",
+          "Citizen"
+        )
+
+    - kind: SetVariable
+      id: pftDecision
+      displayName: Regla 6 Decisión de riesgo
+      variable: Global.R_DecisionRiesgo
+      value: |-
+        =Switch(
+          Global.R_Categoria,
+          "prohibido", "no_construir",
+          "alto_riesgo", "no_construir_sin_asesoria",
+          "revision_juridica", "revision_juridica",
+          "excepcion_6_3", "construir_con_aprobacion",
+          If(Global.P10_Acciones <> "responde", "construir_con_aprobacion", Global.R_Transparencia, "construir_con_aviso_ia", "construir")
+        )
+
+    - kind: SetVariable
+      id: pftRefs
+      displayName: Referencias aplicadas
+      variable: Global.R_Referencias
+      value: |-
+        =Concat(
+          Filter(
+            [
+              Concat(Filter(Topic.Catalogo, ("," & codigo & ",") in Topic.Seleccion), referencia, " | "),
+              If(Global.R_Categoria = "excepcion_6_3", "Art. 6.3 AI Act (" & Global.P15b_TareaArt6_3 & "): excepción a confirmar por una persona; documentar y registrar (art. 49.2)", ""),
+              If(Global.R_Transparencia, "Art. 50 AI Act: obligaciones de transparencia, desde el 2/8/2026", ""),
+              If(Global.R_Art22, "Art. 22 RGPD: posible decisión automatizada sin intervención humana", ""),
+              If(Global.R_EIPD, "RGPD: valorar evaluación de impacto (art. 35); ISO/IEC 42001 A.7", "")
+            ],
+            Len(Value) > 0
+          ),
+          Value,
+          " | "
+        )
+
+    - kind: SetVariable
+      id: pftVersion
+      displayName: Versión de reglas
+      variable: Global.R_VersionReglas
+      value: =Env.pft_VersionReglas
+
+inputType: {}
+outputType: {}

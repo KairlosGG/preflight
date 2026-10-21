@@ -7,7 +7,7 @@ beginDialog:
       id: question_Qr7ow7
       displayName: P01a Nombre del agente
       interruptionPolicy:
-        allowInterruption: true
+        allowInterruption: false
 
       variable: init:Global.P01_NombreAgente
       prompt: ¿Qué nombre provisional tiene el agente que quieres construir?
@@ -17,7 +17,7 @@ beginDialog:
       id: question_ZBlzde
       displayName: P01b Área
       interruptionPolicy:
-        allowInterruption: true
+        allowInterruption: false
 
       variable: init:Global.P01_Area
       prompt: ¿En qué área o departamento se va a usar?
@@ -27,7 +27,7 @@ beginDialog:
       id: odpDii
       displayName: P02 Problema
       interruptionPolicy:
-        allowInterruption: true
+        allowInterruption: false
 
       variable: init:Global.P02_Problema
       prompt: En una frase, ¿qué problema resuelve el agente?
@@ -37,7 +37,7 @@ beginDialog:
       id: question_Ayl56G
       displayName: P03 Propietario
       interruptionPolicy:
-        allowInterruption: true
+        allowInterruption: false
 
       variable: init:Global.P03_Propietario
       prompt: ¿Quién es el propietario de negocio del agente? Indica su nombre y su puesto.

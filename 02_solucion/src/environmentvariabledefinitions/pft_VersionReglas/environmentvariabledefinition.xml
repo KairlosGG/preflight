@@ -1,5 +1,5 @@
 <environmentvariabledefinition schemaname="pft_VersionReglas">
-  <defaultvalue>0.0.0</defaultvalue>
+  <defaultvalue>0.1.0</defaultvalue>
   <description default="Versión de las reglas de clasificación usada en cada ficha.">
     <label description="Versión de las reglas de clasificación usada en cada ficha." languagecode="3082" />
   </description>

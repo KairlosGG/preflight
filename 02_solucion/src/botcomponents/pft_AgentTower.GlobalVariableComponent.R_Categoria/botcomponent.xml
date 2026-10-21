@@ -1,0 +1,11 @@
+<botcomponent schemaname="pft_AgentTower.GlobalVariableComponent.R_Categoria">
+  <componenttype>12</componenttype>
+  <description>Categoría principal propuesta por las reglas de Preflight: prohibido, revision_juridica, alto_riesgo, excepcion_6_3 o minimo. La confirma una persona responsable.</description>
+  <iscustomizable>0</iscustomizable>
+  <name>R_Categoria</name>
+  <parentbotid>
+    <schemaname>pft_AgentTower</schemaname>
+  </parentbotid>
+  <statecode>0</statecode>
+  <statuscode>1</statuscode>
+</botcomponent>

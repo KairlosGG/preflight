@@ -1,0 +1,11 @@
+<botcomponent schemaname="pft_AgentTower.GlobalVariableComponent.R_Referencias">
+  <componenttype>12</componenttype>
+  <description>Artículos y puntos del AI Act y del RGPD aplicados en la clasificación, con su fecha de aplicación. Son los hechos usados en la ficha. Regla de Preflight.</description>
+  <iscustomizable>0</iscustomizable>
+  <name>R_Referencias</name>
+  <parentbotid>
+    <schemaname>pft_AgentTower</schemaname>
+  </parentbotid>
+  <statecode>0</statecode>
+  <statuscode>1</statuscode>
+</botcomponent>

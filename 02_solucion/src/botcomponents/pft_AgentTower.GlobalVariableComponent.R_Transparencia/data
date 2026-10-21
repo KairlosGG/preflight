@@ -1,0 +1,6 @@
+kind: Variable
+name: R_Transparencia
+scope: Conversation
+isExternalInitializationAllowed: false
+isOutputToExternalCallers: false
+initializationTimeoutInMilliseconds: 0

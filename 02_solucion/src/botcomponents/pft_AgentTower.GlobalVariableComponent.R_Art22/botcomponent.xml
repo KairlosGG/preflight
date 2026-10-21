@@ -1,0 +1,11 @@
+<botcomponent schemaname="pft_AgentTower.GlobalVariableComponent.R_Art22">
+  <componenttype>12</componenttype>
+  <description>Verdadero si el agente influye en decisiones del Anexo III sin revisión humana previa: posible decisión automatizada del art. 22 del RGPD. Regla de Preflight.</description>
+  <iscustomizable>0</iscustomizable>
+  <name>R_Art22</name>
+  <parentbotid>
+    <schemaname>pft_AgentTower</schemaname>
+  </parentbotid>
+  <statecode>0</statecode>
+  <statuscode>1</statuscode>
+</botcomponent>

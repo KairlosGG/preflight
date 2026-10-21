@@ -1,0 +1,11 @@
+<botcomponent schemaname="pft_AgentTower.GlobalVariableComponent.R_Zona">
+  <componenttype>12</componenttype>
+  <description>Zona de gobierno propuesta según la guía de Microsoft: Citizen, Partnered, Professional o No aplica. Regla de Preflight.</description>
+  <iscustomizable>0</iscustomizable>
+  <name>R_Zona</name>
+  <parentbotid>
+    <schemaname>pft_AgentTower</schemaname>
+  </parentbotid>
+  <statecode>0</statecode>
+  <statuscode>1</statuscode>
+</botcomponent>

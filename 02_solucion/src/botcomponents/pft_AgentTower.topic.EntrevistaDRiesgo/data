@@ -61,7 +61,8 @@ beginDialog:
                 { title: "Clasificar a personas por datos biométricos para deducir origen étnico, opiniones políticas, afiliación sindical, religión, vida u orientación sexual", value: "art5_1g" },
                 { title: "Generar imágenes, vídeos o audios íntimos o sexuales realistas de personas reales sin su consentimiento, o de menores", value: "art5_1ba_bb" },
                 { title: "Reconocer emociones o usar datos biométricos (cara, voz, huella…) en otros contextos", value: "biometria_otros" }
-              ] }
+              ] },
+            { type: "Input.Text", id: "observaciones", label: "¿Hay algo más sobre datos, personas afectadas o riesgos que deba saber quien revise la evaluación? (opcional)", isMultiline: true, maxLength: 500 }
           ],
           actions: [
             { type: "Action.Submit", title: "Confirmar y continuar", data: { actionSubmitId: "pft_bloqueD_confirmar" } }
@@ -72,6 +73,7 @@ beginDialog:
           actionSubmitId: Topic.actionSubmitId
           ambitosAnexoIII: Global.P15_AmbitosAnexoIII
           datosPersonales: Global.P14_DatosPersonales
+          observaciones: Global.P19b_Observaciones
           perfilado: Global.P17_Perfilado
           practicasSensibles: Global.P19_PracticasSensibles
           publicacionExterna: Global.P18_PublicacionExterna
@@ -82,6 +84,7 @@ beginDialog:
           actionSubmitId: String
           ambitosAnexoIII: String
           datosPersonales: String
+          observaciones: String
           perfilado: String
           practicasSensibles: String
           publicacionExterna: String

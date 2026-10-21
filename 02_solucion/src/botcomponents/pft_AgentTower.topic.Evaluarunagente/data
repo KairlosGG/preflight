@@ -24,6 +24,9 @@ beginDialog:
         - variable: Global.P04_UsuariosMes
           value: =Blank()
 
+        - variable: Global.P04b_Alcance
+          value: =Blank()
+
         - variable: Global.P05_UsuariosConLicencia
           value: =Blank()
 
@@ -72,6 +75,9 @@ beginDialog:
         - variable: Global.P19_PracticasSensibles
           value: =Blank()
 
+        - variable: Global.P19b_Observaciones
+          value: =Blank()
+
     - kind: SetVariable
       id: setVariable_Pexg1I
       displayName: P00 Solicitud inicial
@@ -103,12 +109,23 @@ beginDialog:
       displayName: Ir a bloque D
       dialog: pft_AgentTower.topic.EntrevistaDRiesgo
 
+    - kind: BeginDialog
+      id: pftGoClas
+      displayName: Ir a clasificar riesgo
+      dialog: pft_AgentTower.topic.Clasificarriesgo
+
     - kind: SendActivity
       id: sendActivity_cyzR8L
       displayName: Cierre provisional
       activity: |-
-        Identificación, valor, funcionamiento y riesgo registrados para {Global.P01_NombreAgente} ({Global.P01_Area}).
-        La ficha con el valor, el coste y el riesgo todavía está en construcción, así que la evaluación termina aquí por ahora.
+        Clasificación preliminar de {Global.P01_NombreAgente} ({Global.P01_Area}):
+        - Categoría: {Global.R_Categoria}
+        - Zona propuesta: {Global.R_Zona}
+        - Decisión por riesgo: {Global.R_DecisionRiesgo}
+        - Referencias: {Global.R_Referencias}
+        - Versión de reglas: {Global.R_VersionReglas}
+        La ficha completa, con valor y coste, todavía está en construcción.
+        _Orientación preliminar generada con IA. No constituye asesoramiento jurídico ni evaluación de conformidad. La clasificación debe validarla una persona responsable._
 
     - kind: SetVariable
       id: setVariable_cLXHDL

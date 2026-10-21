@@ -1,0 +1,11 @@
+<botcomponent schemaname="pft_AgentTower.GlobalVariableComponent.R_EIPD">
+  <componenttype>12</componenttype>
+  <description>Verdadero si el agente trata datos personales: hay que valorar la evaluación de impacto del RGPD (art. 35) y el control A.7 de ISO/IEC 42001. Regla de Preflight.</description>
+  <iscustomizable>0</iscustomizable>
+  <name>R_EIPD</name>
+  <parentbotid>
+    <schemaname>pft_AgentTower</schemaname>
+  </parentbotid>
+  <statecode>0</statecode>
+  <statuscode>1</statuscode>
+</botcomponent>

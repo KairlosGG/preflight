@@ -1,0 +1,11 @@
+<botcomponent schemaname="pft_AgentTower.GlobalVariableComponent.P04b_Alcance">
+  <componenttype>12</componenttype>
+  <description>  Quién usará el agente propuesto. Código: personal, equipo, otros_equipos u organizacion. Decide la zona de gobierno. Pregunta 4b de la entrevista de Preflight.</description>
+  <iscustomizable>0</iscustomizable>
+  <name>P04b_Alcance</name>
+  <parentbotid>
+    <schemaname>pft_AgentTower</schemaname>
+  </parentbotid>
+  <statecode>0</statecode>
+  <statuscode>1</statuscode>
+</botcomponent>

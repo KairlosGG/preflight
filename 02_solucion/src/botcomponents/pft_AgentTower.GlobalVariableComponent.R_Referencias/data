@@ -1,0 +1,6 @@
+kind: Variable
+name: R_Referencias
+scope: Conversation
+isExternalInitializationAllowed: false
+isOutputToExternalCallers: false
+initializationTimeoutInMilliseconds: 0

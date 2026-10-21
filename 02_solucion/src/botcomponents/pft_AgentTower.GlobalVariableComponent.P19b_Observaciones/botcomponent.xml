@@ -1,0 +1,11 @@
+<botcomponent schemaname="pft_AgentTower.GlobalVariableComponent.P19b_Observaciones">
+  <componenttype>12</componenttype>
+  <description>Observaciones libres del proponente sobre datos, personas afectadas o riesgos. No la usan las reglas: la lee el aprobador y la revisa el prompt de coherencia. Pregunta 19b de la entrevista de Preflight.</description>
+  <iscustomizable>0</iscustomizable>
+  <name>P19b_Observaciones</name>
+  <parentbotid>
+    <schemaname>pft_AgentTower</schemaname>
+  </parentbotid>
+  <statecode>0</statecode>
+  <statuscode>1</statuscode>
+</botcomponent>
