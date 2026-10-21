@@ -15,6 +15,7 @@ Guarda siempre las dos versiones:
 | Preflight_0.1.0.2_2026-10-19_unmanaged.zip | 0.1.0.2 | No administrada | 2026-10-19 | Añade el agente Agent Tower vacío (pft_AgentTower, arnés estándar, español) con sus 13 temas del sistema |
 | Preflight_0.1.0.3_2026-10-20_unmanaged.zip | 0.1.0.3 | No administrada | 2026-10-20 | Bienvenida con aviso legal, tema Evaluar un agente, bloque A de la entrevista con tarjeta de revisión y variables globales P00-P03 |
 | Preflight_0.1.0.4_2026-10-20_unmanaged.zip | 0.1.0.4 | No administrada | 2026-10-20 | Bloque B (Valor) con tarjeta validada, regla de coherencia de usuarios con tarjeta de corrección y variables globales P04-P09 |
+| Preflight_0.1.0.5_2026-10-21_unmanaged.zip | 0.1.0.5 | No administrada | 2026-10-21 | Bloques C (Funcionamiento) y D (Riesgo) con una tarjeta cada uno, reglas de coherencia de P15 y P19, tarjeta de la excepción del art. 6.3 y variables globales P10-P19 y P15b |
 
 ## Fuente descomprimida
 

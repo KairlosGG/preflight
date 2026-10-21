@@ -1,0 +1,11 @@
+<botcomponent schemaname="pft_AgentTower.topic.EntrevistaDRiesgo">
+  <componenttype>9</componenttype>
+  <description>Bloque D de la entrevista de Preflight: preguntas 14 a 19 (datos personales, ámbitos del Anexo III del AI Act, revisión humana, perfilado, publicación externa y prácticas prohibidas o sensibles). Solo se ejecuta cuando lo llama el tema Evaluar un agente.</description>
+  <iscustomizable>0</iscustomizable>
+  <name>Entrevista D Riesgo</name>
+  <parentbotid>
+    <schemaname>pft_AgentTower</schemaname>
+  </parentbotid>
+  <statecode>0</statecode>
+  <statuscode>1</statuscode>
+</botcomponent>

@@ -1,0 +1,11 @@
+<botcomponent schemaname="pft_AgentTower.GlobalVariableComponent.P10_Acciones">
+  <componenttype>12</componenttype>
+  <description>Qué hace el agente propuesto. Código: responde, acciones_confirmadas o acciones_autonomas. Pregunta 10 de la entrevista de Preflight.</description>
+  <iscustomizable>0</iscustomizable>
+  <name>P10_Acciones</name>
+  <parentbotid>
+    <schemaname>pft_AgentTower</schemaname>
+  </parentbotid>
+  <statecode>0</statecode>
+  <statuscode>1</statuscode>
+</botcomponent>

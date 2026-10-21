@@ -1,0 +1,59 @@
+kind: AdaptiveDialog
+beginDialog:
+  kind: OnRedirect
+  id: main
+  actions:
+    - kind: AdaptiveCardPrompt
+      id: 0KVFNi
+      displayName: Tarjeta C Funcionamiento
+      card: |-
+        ={
+          type: "AdaptiveCard",
+          '$schema': "http://adaptivecards.io/schemas/adaptive-card.json",
+          version: "1.5",
+          body: [
+            { type: "TextBlock", text: "Funcionamiento del agente", weight: "Bolder", size: "Medium", wrap: true },
+            { type: "TextBlock", text: "Con estos datos se estiman las acciones, el coste en Copilot Credits y la zona de gobierno.", wrap: true, isSubtle: true },
+            { type: "Input.ChoiceSet", id: "acciones", label: "¿Qué hará el agente?", value: Global.P10_Acciones, style: "expanded", isRequired: true, errorMessage: "Elige una opción.",
+              choices: [
+                { title: "Solo responde o informa, no cambia nada", value: "responde" },
+                { title: "Ejecuta acciones cuando el usuario las confirma (crear o modificar registros, enviar correos…)", value: "acciones_confirmadas" },
+                { title: "Ejecuta acciones por su cuenta, sin confirmación del usuario", value: "acciones_autonomas" }
+              ] },
+            { type: "Input.ChoiceSet", id: "fuentes", label: "¿De dónde sacará la información? Marca todas las que apliquen.", value: Global.P11_Fuentes, style: "expanded", isMultiSelect: true, isRequired: true, errorMessage: "Marca al menos una fuente.",
+              choices: [
+                { title: "Solo lo que el usuario escribe o adjunta en la conversación", value: "conversacion" },
+                { title: "Sitios de SharePoint o archivos concretos", value: "sharepoint" },
+                { title: "Todo Microsoft 365 del usuario (correo, chats, archivos) mediante Microsoft Graph", value: "graph" },
+                { title: "Sitios web públicos", value: "web" },
+                { title: "Otros sistemas de la organización o de terceros (ERP, CRM, bases de datos…)", value: "sistemas" }
+              ] },
+            { type: "Input.Number", id: "paginasMes", label: "¿Cuántas páginas de documentos o imágenes procesará al mes? Pon 0 si no procesa ninguna.", value: Global.P12_PaginasMes, min: 0, max: 1000000, isRequired: true, errorMessage: "Indica un número entre 0 y 1.000.000." },
+            { type: "Input.ChoiceSet", id: "usuariosExternos", label: "¿Lo usarán personas externas a la organización?", value: Global.P13_UsuariosExternos, style: "expanded", isRequired: true, errorMessage: "Elige una opción.",
+              choices: [
+                { title: "No, solo personas de la organización", value: "no" },
+                { title: "Sí, también clientes, ciudadanos u otras personas externas", value: "si" }
+              ] }
+          ],
+          actions: [
+            { type: "Action.Submit", title: "Confirmar y continuar", data: { actionSubmitId: "pft_bloqueC_confirmar" } }
+          ]
+        }
+      output:
+        binding:
+          acciones: Global.P10_Acciones
+          actionSubmitId: Topic.actionSubmitId
+          fuentes: Global.P11_Fuentes
+          paginasMes: Global.P12_PaginasMes
+          usuariosExternos: Global.P13_UsuariosExternos
+
+      outputType:
+        properties:
+          acciones: String
+          actionSubmitId: String
+          fuentes: String
+          paginasMes: Number
+          usuariosExternos: String
+
+inputType: {}
+outputType: {}

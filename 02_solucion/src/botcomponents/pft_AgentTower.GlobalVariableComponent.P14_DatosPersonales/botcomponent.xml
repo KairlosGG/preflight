@@ -1,0 +1,11 @@
+<botcomponent schemaname="pft_AgentTower.GlobalVariableComponent.P14_DatosPersonales">
+  <componenttype>12</componenttype>
+  <description>Si el agente tratará datos personales. Código: no, personales o especiales (categorías especiales del art. 9 RGPD). Pregunta 14 de la entrevista de Preflight.</description>
+  <iscustomizable>0</iscustomizable>
+  <name>P14_DatosPersonales</name>
+  <parentbotid>
+    <schemaname>pft_AgentTower</schemaname>
+  </parentbotid>
+  <statecode>0</statecode>
+  <statuscode>1</statuscode>
+</botcomponent>

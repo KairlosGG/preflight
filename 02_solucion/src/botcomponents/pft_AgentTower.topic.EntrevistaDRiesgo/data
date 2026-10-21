@@ -1,0 +1,246 @@
+kind: AdaptiveDialog
+beginDialog:
+  kind: OnRedirect
+  id: main
+  actions:
+    - kind: AdaptiveCardPrompt
+      id: Rv11Qa
+      displayName: Tarjeta D Riesgo
+      card: |-
+        ={
+          type: "AdaptiveCard",
+          '$schema': "http://adaptivecards.io/schemas/adaptive-card.json",
+          version: "1.5",
+          body: [
+            { type: "TextBlock", text: "Riesgo del agente", weight: "Bolder", size: "Medium", wrap: true },
+            { type: "TextBlock", text: "Responde con lo que sepas hoy. Con estas respuestas se propone una clasificación orientativa que confirmará una persona responsable. No es asesoramiento jurídico.", wrap: true, isSubtle: true },
+            { type: "Input.ChoiceSet", id: "datosPersonales", label: "¿Tratará datos personales?", value: Global.P14_DatosPersonales, style: "expanded", isRequired: true, errorMessage: "Elige una opción.",
+              choices: [
+                { title: "No", value: "no" },
+                { title: "Sí, datos personales (nombre, contacto, puesto, rendimiento…)", value: "personales" },
+                { title: "Sí, incluidas categorías especiales (salud, origen étnico, opiniones políticas, religión, afiliación sindical, datos genéticos o biométricos, vida u orientación sexual)", value: "especiales" }
+              ] },
+            { type: "Input.ChoiceSet", id: "ambitosAnexoIII", label: "¿Influirá en decisiones sobre personas en alguno de estos ámbitos? Marca todos los que apliquen.", value: Global.P15_AmbitosAnexoIII, style: "expanded", isMultiSelect: true, isRequired: true, errorMessage: "Marca al menos una opción. Si no aplica, marca Ninguno de estos ámbitos.",
+              choices: [
+                { title: "Ninguno de estos ámbitos", value: "ninguno" },
+                { title: "Educación: acceso, admisión o asignación a centros y programas", value: "III_3a" },
+                { title: "Educación: evaluación de resultados de aprendizaje", value: "III_3b" },
+                { title: "Educación: decidir el nivel de formación que recibirá o al que podrá acceder una persona", value: "III_3c" },
+                { title: "Educación: vigilancia de conductas prohibidas en exámenes", value: "III_3d" },
+                { title: "Empleo: selección de personal (anuncios dirigidos, filtrado de candidaturas, evaluación de candidatos)", value: "III_4a" },
+                { title: "Empleo: condiciones laborales, promoción, despido, reparto de tareas según comportamiento o rasgos personales, o supervisión y evaluación del rendimiento", value: "III_4b" },
+                { title: "Servicios públicos: derecho a prestaciones o servicios públicos esenciales, por o para una autoridad pública", value: "III_5a" },
+                { title: "Crédito: solvencia o calificación crediticia de personas (no incluye detectar fraude)", value: "III_5b" },
+                { title: "Seguros: evaluación de riesgos y precios de seguros de vida o de salud", value: "III_5c" },
+                { title: "Emergencias: clasificación de llamadas, envío de servicios de emergencia o triaje de pacientes", value: "III_5d" },
+                { title: "Otro ámbito sensible: biometría, infraestructuras críticas, aplicación de la ley, migración y fronteras, justicia o procesos electorales", value: "III_otro" }
+              ] },
+            { type: "Input.ChoiceSet", id: "revisionHumana", label: "¿Una persona revisará cada resultado antes de que tenga efecto?", value: Global.P16_RevisionHumana, style: "expanded", isRequired: true, errorMessage: "Elige una opción.",
+              choices: [
+                { title: "Sí, una persona revisa cada resultado y decide", value: "si" },
+                { title: "No, el resultado tiene efecto sin revisión previa", value: "no" }
+              ] },
+            { type: "Input.ChoiceSet", id: "perfilado", label: "¿Elaborará perfiles o puntuaciones de personas (evaluar o predecir su rendimiento, situación económica, salud, preferencias, fiabilidad o comportamiento)?", value: Global.P17_Perfilado, style: "expanded", isRequired: true, errorMessage: "Elige una opción.",
+              choices: [
+                { title: "Sí", value: "si" },
+                { title: "No", value: "no" }
+              ] },
+            { type: "Input.ChoiceSet", id: "publicacionExterna", label: "¿Generará contenido que se publicará fuera de la organización?", value: Global.P18_PublicacionExterna, style: "expanded", isRequired: true, errorMessage: "Elige una opción.",
+              choices: [
+                { title: "No", value: "no" },
+                { title: "Sí, y una persona lo revisa y asume la responsabilidad editorial antes de publicarlo", value: "con_revision" },
+                { title: "Sí, sin revisión humana antes de publicarlo", value: "sin_revision" }
+              ] },
+            { type: "Input.ChoiceSet", id: "practicasSensibles", label: "¿Hará alguna de estas cosas? Marca todas las que apliquen.", value: Global.P19_PracticasSensibles, style: "expanded", isMultiSelect: true, isRequired: true, errorMessage: "Marca al menos una opción. Si no aplica, marca Ninguna de estas.",
+              choices: [
+                { title: "Ninguna de estas", value: "ninguna" },
+                { title: "Influir en las decisiones de las personas con técnicas subliminales, manipuladoras o engañosas", value: "art5_1a" },
+                { title: "Aprovechar vulnerabilidades por edad, discapacidad o situación social o económica", value: "art5_1b" },
+                { title: "Puntuar a personas por su comportamiento social o rasgos personales y tratarlas peor por ello", value: "art5_1c" },
+                { title: "Inferir emociones de personas en el trabajo o en centros educativos", value: "art5_1f" },
+                { title: "Clasificar a personas por datos biométricos para deducir origen étnico, opiniones políticas, afiliación sindical, religión, vida u orientación sexual", value: "art5_1g" },
+                { title: "Generar imágenes, vídeos o audios íntimos o sexuales realistas de personas reales sin su consentimiento, o de menores", value: "art5_1ba_bb" },
+                { title: "Reconocer emociones o usar datos biométricos (cara, voz, huella…) en otros contextos", value: "biometria_otros" }
+              ] }
+          ],
+          actions: [
+            { type: "Action.Submit", title: "Confirmar y continuar", data: { actionSubmitId: "pft_bloqueD_confirmar" } }
+          ]
+        }
+      output:
+        binding:
+          actionSubmitId: Topic.actionSubmitId
+          ambitosAnexoIII: Global.P15_AmbitosAnexoIII
+          datosPersonales: Global.P14_DatosPersonales
+          perfilado: Global.P17_Perfilado
+          practicasSensibles: Global.P19_PracticasSensibles
+          publicacionExterna: Global.P18_PublicacionExterna
+          revisionHumana: Global.P16_RevisionHumana
+
+      outputType:
+        properties:
+          actionSubmitId: String
+          ambitosAnexoIII: String
+          datosPersonales: String
+          perfilado: String
+          practicasSensibles: String
+          publicacionExterna: String
+          revisionHumana: String
+
+    - kind: ConditionGroup
+      id: conditionGroup_pftAmb1
+      conditions:
+        - id: conditionItem_pftAmb1
+          condition: ="ninguno" in Global.P15_AmbitosAnexoIII && Global.P15_AmbitosAnexoIII <> "ninguno"
+          displayName: Coherencia de ámbitos
+          actions:
+            - kind: AdaptiveCardPrompt
+              id: pftCorAmb
+              displayName: Corregir ámbitos
+              card: |-
+                ={
+                  type: "AdaptiveCard",
+                  '$schema': "http://adaptivecards.io/schemas/adaptive-card.json",
+                  version: "1.5",
+                  body: [
+                    { type: "TextBlock", text: "Revisa los ámbitos", weight: "Bolder", size: "Medium", wrap: true },
+                    { type: "TextBlock", text: "Has marcado «Ninguno de estos ámbitos» junto con otros ámbitos. Deja marcado solo «Ninguno» o solo los ámbitos que apliquen.", wrap: true, color: "Attention" },
+                    { type: "Input.ChoiceSet", id: "ambitosAnexoIII", label: "¿Influirá en decisiones sobre personas en alguno de estos ámbitos? Marca todos los que apliquen.", value: Global.P15_AmbitosAnexoIII, style: "expanded", isMultiSelect: true, isRequired: true, errorMessage: "Marca al menos una opción. Si no aplica, marca Ninguno de estos ámbitos.",
+                      choices: [
+                        { title: "Ninguno de estos ámbitos", value: "ninguno" },
+                        { title: "Educación: acceso, admisión o asignación a centros y programas", value: "III_3a" },
+                        { title: "Educación: evaluación de resultados de aprendizaje", value: "III_3b" },
+                        { title: "Educación: decidir el nivel de formación que recibirá o al que podrá acceder una persona", value: "III_3c" },
+                        { title: "Educación: vigilancia de conductas prohibidas en exámenes", value: "III_3d" },
+                        { title: "Empleo: selección de personal (anuncios dirigidos, filtrado de candidaturas, evaluación de candidatos)", value: "III_4a" },
+                        { title: "Empleo: condiciones laborales, promoción, despido, reparto de tareas según comportamiento o rasgos personales, o supervisión y evaluación del rendimiento", value: "III_4b" },
+                        { title: "Servicios públicos: derecho a prestaciones o servicios públicos esenciales, por o para una autoridad pública", value: "III_5a" },
+                        { title: "Crédito: solvencia o calificación crediticia de personas (no incluye detectar fraude)", value: "III_5b" },
+                        { title: "Seguros: evaluación de riesgos y precios de seguros de vida o de salud", value: "III_5c" },
+                        { title: "Emergencias: clasificación de llamadas, envío de servicios de emergencia o triaje de pacientes", value: "III_5d" },
+                        { title: "Otro ámbito sensible: biometría, infraestructuras críticas, aplicación de la ley, migración y fronteras, justicia o procesos electorales", value: "III_otro" }
+                      ] }
+                  ],
+                  actions: [
+                    { type: "Action.Submit", title: "Corregir y continuar", data: { actionSubmitId: "pft_bloqueD_corregirAmbitos" } }
+                  ]
+                }
+              output:
+                binding:
+                  actionSubmitId: Topic.actionSubmitId
+                  ambitosAnexoIII: Global.P15_AmbitosAnexoIII
+
+              outputType:
+                properties:
+                  actionSubmitId: String
+                  ambitosAnexoIII: String
+
+            - kind: ConditionGroup
+              id: conditionGroup_pftAmb2
+              conditions:
+                - id: conditionItem_pftAmb2
+                  condition: ="ninguno" in Global.P15_AmbitosAnexoIII && Global.P15_AmbitosAnexoIII <> "ninguno"
+                  displayName: Sigue la incoherencia de ámbitos
+                  actions:
+                    - kind: GotoAction
+                      id: pftGoAmb
+                      actionId: pftCorAmb
+
+    - kind: ConditionGroup
+      id: conditionGroup_pftPra1
+      conditions:
+        - id: conditionItem_pftPra1
+          condition: ="ninguna" in Global.P19_PracticasSensibles && Global.P19_PracticasSensibles <> "ninguna"
+          displayName: Coherencia de prácticas
+          actions:
+            - kind: AdaptiveCardPrompt
+              id: pftCorPra
+              displayName: Corregir prácticas
+              card: |-
+                ={
+                  type: "AdaptiveCard",
+                  '$schema': "http://adaptivecards.io/schemas/adaptive-card.json",
+                  version: "1.5",
+                  body: [
+                    { type: "TextBlock", text: "Revisa las prácticas", weight: "Bolder", size: "Medium", wrap: true },
+                    { type: "TextBlock", text: "Has marcado «Ninguna de estas» junto con otras opciones. Deja marcada solo «Ninguna» o solo las opciones que apliquen.", wrap: true, color: "Attention" },
+                    { type: "Input.ChoiceSet", id: "practicasSensibles", label: "¿Hará alguna de estas cosas? Marca todas las que apliquen.", value: Global.P19_PracticasSensibles, style: "expanded", isMultiSelect: true, isRequired: true, errorMessage: "Marca al menos una opción. Si no aplica, marca Ninguna de estas.",
+                      choices: [
+                        { title: "Ninguna de estas", value: "ninguna" },
+                        { title: "Influir en las decisiones de las personas con técnicas subliminales, manipuladoras o engañosas", value: "art5_1a" },
+                        { title: "Aprovechar vulnerabilidades por edad, discapacidad o situación social o económica", value: "art5_1b" },
+                        { title: "Puntuar a personas por su comportamiento social o rasgos personales y tratarlas peor por ello", value: "art5_1c" },
+                        { title: "Inferir emociones de personas en el trabajo o en centros educativos", value: "art5_1f" },
+                        { title: "Clasificar a personas por datos biométricos para deducir origen étnico, opiniones políticas, afiliación sindical, religión, vida u orientación sexual", value: "art5_1g" },
+                        { title: "Generar imágenes, vídeos o audios íntimos o sexuales realistas de personas reales sin su consentimiento, o de menores", value: "art5_1ba_bb" },
+                        { title: "Reconocer emociones o usar datos biométricos (cara, voz, huella…) en otros contextos", value: "biometria_otros" }
+                      ] }
+                  ],
+                  actions: [
+                    { type: "Action.Submit", title: "Corregir y continuar", data: { actionSubmitId: "pft_bloqueD_corregirPracticas" } }
+                  ]
+                }
+              output:
+                binding:
+                  actionSubmitId: Topic.actionSubmitId
+                  practicasSensibles: Global.P19_PracticasSensibles
+
+              outputType:
+                properties:
+                  actionSubmitId: String
+                  practicasSensibles: String
+
+            - kind: ConditionGroup
+              id: conditionGroup_pftPra2
+              conditions:
+                - id: conditionItem_pftPra2
+                  condition: ="ninguna" in Global.P19_PracticasSensibles && Global.P19_PracticasSensibles <> "ninguna"
+                  displayName: Sigue la incoherencia de prácticas
+                  actions:
+                    - kind: GotoAction
+                      id: pftGoPra
+                      actionId: pftCorPra
+
+    - kind: ConditionGroup
+      id: conditionGroup_pftExc1
+      conditions:
+        - id: conditionItem_pftExc1
+          condition: =Global.P15_AmbitosAnexoIII <> "ninguno"
+          displayName: Hay ámbito del Anexo III
+          actions:
+            - kind: AdaptiveCardPrompt
+              id: pftExc63
+              displayName: Tarjeta D Excepción 6.3
+              card: |-
+                ={
+                  type: "AdaptiveCard",
+                  '$schema': "http://adaptivecards.io/schemas/adaptive-card.json",
+                  version: "1.5",
+                  body: [
+                    { type: "TextBlock", text: "Papel del agente en la decisión", weight: "Bolder", size: "Medium", wrap: true },
+                    { type: "TextBlock", text: "Has marcado al menos un ámbito del Anexo III del AI Act. Esta respuesta sirve para valorar si podría aplicarse la excepción del artículo 6.3. Lo confirmará una persona responsable.", wrap: true, isSubtle: true },
+                    { type: "Input.ChoiceSet", id: "tareaArt6_3", label: "¿Qué opción describe mejor lo que hará el agente?", style: "expanded", isRequired: true, errorMessage: "Elige una opción.",
+                      choices: [
+                        { title: "Una tarea procedimental limitada (por ejemplo, ordenar, clasificar o convertir documentos)", value: "art6_3a" },
+                        { title: "Mejorar el resultado de una tarea que una persona ya ha terminado (por ejemplo, corregir el estilo de un texto ya redactado)", value: "art6_3b" },
+                        { title: "Detectar patrones o desviaciones respecto a decisiones anteriores, sin sustituir ni influir en la valoración de una persona sin la revisión humana adecuada", value: "art6_3c" },
+                        { title: "Una tarea preparatoria de una evaluación que hará una persona (por ejemplo, reunir documentación o redactar un borrador)", value: "art6_3d" },
+                        { title: "Ninguna de estas: el agente evalúa, decide o influye directamente en el resultado", value: "ninguna" }
+                      ] }
+                  ],
+                  actions: [
+                    { type: "Action.Submit", title: "Confirmar y continuar", data: { actionSubmitId: "pft_bloqueD_confirmarExcepcion" } }
+                  ]
+                }
+              output:
+                binding:
+                  actionSubmitId: Topic.actionSubmitId
+                  tareaArt6_3: Global.P15b_TareaArt6_3
+
+              outputType:
+                properties:
+                  actionSubmitId: String
+                  tareaArt6_3: String
+
+inputType: {}
+outputType: {}

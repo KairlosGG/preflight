@@ -1,0 +1,11 @@
+<botcomponent schemaname="pft_AgentTower.GlobalVariableComponent.P13_UsuariosExternos">
+  <componenttype>12</componenttype>
+  <description>Si el agente lo usarán personas externas a la organización. Código: si o no. Pregunta 13 de la entrevista de Preflight.</description>
+  <iscustomizable>0</iscustomizable>
+  <name>P13_UsuariosExternos</name>
+  <parentbotid>
+    <schemaname>pft_AgentTower</schemaname>
+  </parentbotid>
+  <statecode>0</statecode>
+  <statuscode>1</statuscode>
+</botcomponent>

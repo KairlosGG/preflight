@@ -1,0 +1,6 @@
+kind: Variable
+name: P12_PaginasMes
+scope: Conversation
+isExternalInitializationAllowed: false
+isOutputToExternalCallers: false
+initializationTimeoutInMilliseconds: 0

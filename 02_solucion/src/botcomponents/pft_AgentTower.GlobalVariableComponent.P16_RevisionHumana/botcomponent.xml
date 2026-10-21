@@ -1,0 +1,11 @@
+<botcomponent schemaname="pft_AgentTower.GlobalVariableComponent.P16_RevisionHumana">
+  <componenttype>12</componenttype>
+  <description>Si una persona revisa cada resultado del agente antes de que tenga efecto. Código: si o no. Pregunta 16 de la entrevista de Preflight.</description>
+  <iscustomizable>0</iscustomizable>
+  <name>P16_RevisionHumana</name>
+  <parentbotid>
+    <schemaname>pft_AgentTower</schemaname>
+  </parentbotid>
+  <statecode>0</statecode>
+  <statuscode>1</statuscode>
+</botcomponent>

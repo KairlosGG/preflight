@@ -1,0 +1,11 @@
+<botcomponent schemaname="pft_AgentTower.GlobalVariableComponent.P15b_TareaArt6_3">
+  <componenttype>12</componenttype>
+  <description>Papel del agente en una decisión del Anexo III, para valorar la excepción del art. 6.3 del AI Act. Código: art6_3a, art6_3b, art6_3c, art6_3d o ninguna. Solo se pregunta si P15 marca algún ámbito. Pregunta 15b de la entrevista de Preflight.</description>
+  <iscustomizable>0</iscustomizable>
+  <name>P15b_TareaArt6_3</name>
+  <parentbotid>
+    <schemaname>pft_AgentTower</schemaname>
+  </parentbotid>
+  <statecode>0</statecode>
+  <statuscode>1</statuscode>
+</botcomponent>

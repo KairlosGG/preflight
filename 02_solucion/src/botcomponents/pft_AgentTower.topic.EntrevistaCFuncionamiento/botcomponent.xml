@@ -1,0 +1,11 @@
+<botcomponent schemaname="pft_AgentTower.topic.EntrevistaCFuncionamiento">
+  <componenttype>9</componenttype>
+  <description>Bloque C de la entrevista de Preflight: preguntas 10 a 13 (acciones que ejecuta, fuentes de datos, páginas o imágenes que procesa al mes y uso por personas externas). Solo se ejecuta cuando lo llama el tema Evaluar un agente.</description>
+  <iscustomizable>0</iscustomizable>
+  <name>Entrevista C Funcionamiento</name>
+  <parentbotid>
+    <schemaname>pft_AgentTower</schemaname>
+  </parentbotid>
+  <statecode>0</statecode>
+  <statuscode>1</statuscode>
+</botcomponent>

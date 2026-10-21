@@ -1,0 +1,6 @@
+kind: Variable
+name: P15b_TareaArt6_3
+scope: Conversation
+isExternalInitializationAllowed: false
+isOutputToExternalCallers: false
+initializationTimeoutInMilliseconds: 0

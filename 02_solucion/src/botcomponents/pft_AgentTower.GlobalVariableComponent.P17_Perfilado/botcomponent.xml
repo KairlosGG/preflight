@@ -1,0 +1,11 @@
+<botcomponent schemaname="pft_AgentTower.GlobalVariableComponent.P17_Perfilado">
+  <componenttype>12</componenttype>
+  <description>Si el agente elabora perfiles o puntuaciones de personas. Código: si o no. Pregunta 17 de la entrevista de Preflight.</description>
+  <iscustomizable>0</iscustomizable>
+  <name>P17_Perfilado</name>
+  <parentbotid>
+    <schemaname>pft_AgentTower</schemaname>
+  </parentbotid>
+  <statecode>0</statecode>
+  <statuscode>1</statuscode>
+</botcomponent>

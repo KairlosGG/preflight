@@ -1,0 +1,6 @@
+kind: Variable
+name: P14_DatosPersonales
+scope: Conversation
+isExternalInitializationAllowed: false
+isOutputToExternalCallers: false
+initializationTimeoutInMilliseconds: 0

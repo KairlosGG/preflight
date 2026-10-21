@@ -1,0 +1,11 @@
+<botcomponent schemaname="pft_AgentTower.GlobalVariableComponent.P19_PracticasSensibles">
+  <componenttype>12</componenttype>
+  <description>Prácticas prohibidas (art. 5 del AI Act) o sensibles que hará el agente, en códigos separados por comas (ninguna, art5_1a, art5_1b, art5_1c, art5_1f, art5_1g, art5_1ba_bb, biometria_otros). Pregunta 19 de la entrevista de Preflight.</description>
+  <iscustomizable>0</iscustomizable>
+  <name>P19_PracticasSensibles</name>
+  <parentbotid>
+    <schemaname>pft_AgentTower</schemaname>
+  </parentbotid>
+  <statecode>0</statecode>
+  <statuscode>1</statuscode>
+</botcomponent>

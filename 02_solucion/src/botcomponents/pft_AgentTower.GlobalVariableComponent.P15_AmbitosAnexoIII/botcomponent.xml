@@ -1,0 +1,11 @@
+<botcomponent schemaname="pft_AgentTower.GlobalVariableComponent.P15_AmbitosAnexoIII">
+  <componenttype>12</componenttype>
+  <description>Ámbitos del Anexo III del AI Act en los que el agente influye en decisiones sobre personas, en códigos separados por comas (ninguno, III_3a a III_3d, III_4a, III_4b, III_5a a III_5d, III_otro). Pregunta 15 de la entrevista de Preflight.</description>
+  <iscustomizable>0</iscustomizable>
+  <name>P15_AmbitosAnexoIII</name>
+  <parentbotid>
+    <schemaname>pft_AgentTower</schemaname>
+  </parentbotid>
+  <statecode>0</statecode>
+  <statuscode>1</statuscode>
+</botcomponent>

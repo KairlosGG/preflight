@@ -1,0 +1,11 @@
+<botcomponent schemaname="pft_AgentTower.GlobalVariableComponent.P11_Fuentes">
+  <componenttype>12</componenttype>
+  <description>Fuentes de información del agente propuesto, en códigos separados por comas: conversacion, sharepoint, graph, web, sistemas. Pregunta 11 de la entrevista de Preflight.</description>
+  <iscustomizable>0</iscustomizable>
+  <name>P11_Fuentes</name>
+  <parentbotid>
+    <schemaname>pft_AgentTower</schemaname>
+  </parentbotid>
+  <statecode>0</statecode>
+  <statuscode>1</statuscode>
+</botcomponent>

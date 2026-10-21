@@ -1,0 +1,11 @@
+<botcomponent schemaname="pft_AgentTower.GlobalVariableComponent.P18_PublicacionExterna">
+  <componenttype>12</componenttype>
+  <description>Si el agente genera contenido que se publicará fuera de la organización. Código: no, con_revision o sin_revision. Pregunta 18 de la entrevista de Preflight.</description>
+  <iscustomizable>0</iscustomizable>
+  <name>P18_PublicacionExterna</name>
+  <parentbotid>
+    <schemaname>pft_AgentTower</schemaname>
+  </parentbotid>
+  <statecode>0</statecode>
+  <statuscode>1</statuscode>
+</botcomponent>

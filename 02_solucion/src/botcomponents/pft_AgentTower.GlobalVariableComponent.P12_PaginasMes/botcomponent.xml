@@ -1,0 +1,11 @@
+<botcomponent schemaname="pft_AgentTower.GlobalVariableComponent.P12_PaginasMes">
+  <componenttype>12</componenttype>
+  <description>Páginas de documentos o imágenes que procesará el agente al mes (0 si no procesa ninguna). Pregunta 12 de la entrevista de Preflight.</description>
+  <iscustomizable>0</iscustomizable>
+  <name>P12_PaginasMes</name>
+  <parentbotid>
+    <schemaname>pft_AgentTower</schemaname>
+  </parentbotid>
+  <statecode>0</statecode>
+  <statuscode>1</statuscode>
+</botcomponent>
