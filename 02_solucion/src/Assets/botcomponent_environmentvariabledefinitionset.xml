@@ -2,4 +2,7 @@
   <botcomponent_environmentvariabledefinition botcomponentid.schemaname="pft_AgentTower.topic.Clasificarriesgo" environmentvariabledefinitionid.schemaname="pft_VersionReglas">
     <iscustomizable>1</iscustomizable>
   </botcomponent_environmentvariabledefinition>
+  <botcomponent_environmentvariabledefinition botcomponentid.schemaname="pft_AgentTower.topic.Revisarcoherencia" environmentvariabledefinitionid.schemaname="pft_VersionPrompts">
+    <iscustomizable>1</iscustomizable>
+  </botcomponent_environmentvariabledefinition>
 </botcomponent_environmentvariabledefinitionset>

@@ -78,6 +78,45 @@ beginDialog:
         - variable: Global.P19b_Observaciones
           value: =Blank()
 
+        - variable: Global.R_Categoria
+          value: =Blank()
+
+        - variable: Global.R_Transparencia
+          value: =Blank()
+
+        - variable: Global.R_EIPD
+          value: =Blank()
+
+        - variable: Global.R_Art22
+          value: =Blank()
+
+        - variable: Global.R_Zona
+          value: =Blank()
+
+        - variable: Global.R_DecisionRiesgo
+          value: =Blank()
+
+        - variable: Global.R_Referencias
+          value: =Blank()
+
+        - variable: Global.R_VersionReglas
+          value: =Blank()
+
+        - variable: Global.R_Suficiencia
+          value: =Blank()
+
+        - variable: Global.R_SuficienciaDetalle
+          value: =Blank()
+
+        - variable: Global.R_Coherencia
+          value: =Blank()
+
+        - variable: Global.R_CoherenciaDetalle
+          value: =Blank()
+
+        - variable: Global.R_VersionPrompt
+          value: =Blank()
+
     - kind: SetVariable
       id: setVariable_Pexg1I
       displayName: P00 Solicitud inicial
@@ -93,6 +132,11 @@ beginDialog:
       id: 01xfk9
       displayName: Ir a bloque A
       dialog: pft_AgentTower.topic.EntrevistaAIdentificacin
+
+    - kind: BeginDialog
+      id: pftGoSuf
+      displayName: Ir a comprobar suficiencia
+      dialog: pft_AgentTower.topic.Comprobarsuficiencia
 
     - kind: BeginDialog
       id: iHVnBV
@@ -114,6 +158,11 @@ beginDialog:
       displayName: Ir a clasificar riesgo
       dialog: pft_AgentTower.topic.Clasificarriesgo
 
+    - kind: BeginDialog
+      id: pftGoCoh
+      displayName: Ir a revisar coherencia
+      dialog: pft_AgentTower.topic.Revisarcoherencia
+
     - kind: SendActivity
       id: sendActivity_cyzR8L
       displayName: Cierre provisional
@@ -123,7 +172,12 @@ beginDialog:
         - Zona propuesta: {Global.R_Zona}
         - Decisión por riesgo: {Global.R_DecisionRiesgo}
         - Referencias: {Global.R_Referencias}
+        - Suficiencia: {Global.R_Suficiencia}
+        - Detalle de suficiencia: {Global.R_SuficienciaDetalle}
+        - Coherencia: {Global.R_Coherencia}
+        - Detalle de coherencia: {Global.R_CoherenciaDetalle}
         - Versión de reglas: {Global.R_VersionReglas}
+        - Versión del prompt: {Global.R_VersionPrompt}
         La ficha completa, con valor y coste, todavía está en construcción.
         _Orientación preliminar generada con IA. No constituye asesoramiento jurídico ni evaluación de conformidad. La clasificación debe validarla una persona responsable._
 

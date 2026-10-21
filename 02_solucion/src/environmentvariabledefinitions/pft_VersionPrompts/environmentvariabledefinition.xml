@@ -1,0 +1,14 @@
+<environmentvariabledefinition schemaname="pft_VersionPrompts">
+  <defaultvalue>0.1.0</defaultvalue>
+  <description default="Versión de las instrucciones de los prompts de Agent Tower (suficiencia y coherencia). Se guarda en R_VersionPrompt en cada evaluación. Se sube cada vez que cambian las instrucciones, el modelo o el formato JSON de un prompt.">
+    <label description="Versión de las instrucciones de los prompts de Agent Tower (suficiencia y coherencia). Se guarda en R_VersionPrompt en cada evaluación. Se sube cada vez que cambian las instrucciones, el modelo o el formato JSON de un prompt." languagecode="3082" />
+  </description>
+  <displayname default="Versión de prompts">
+    <label description="Versión de prompts" languagecode="3082" />
+  </displayname>
+  <introducedversion>0.1.0.6</introducedversion>
+  <iscustomizable>1</iscustomizable>
+  <isrequired>0</isrequired>
+  <secretstore>0</secretstore>
+  <type>100000000</type>
+</environmentvariabledefinition>

@@ -1,0 +1,11 @@
+<botcomponent schemaname="pft_AgentTower.GlobalVariableComponent.R_CoherenciaDetalle">
+  <componenttype>12</componenttype>
+  <description>Contradicciones entre lo escrito (P00, P02, P19b) y lo marcado (P04b, P10-P19), en texto legible para la ficha y el aprobador.</description>
+  <iscustomizable>0</iscustomizable>
+  <name>R_CoherenciaDetalle</name>
+  <parentbotid>
+    <schemaname>pft_AgentTower</schemaname>
+  </parentbotid>
+  <statecode>0</statecode>
+  <statuscode>1</statuscode>
+</botcomponent>

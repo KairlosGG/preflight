@@ -1,0 +1,11 @@
+<botcomponent schemaname="pft_AgentTower.GlobalVariableComponent.R_SuficienciaDetalle">
+  <componenttype>12</componenttype>
+  <description>Qué faltaba en la descripción del agente, en texto legible para la ficha y el aprobador.</description>
+  <iscustomizable>0</iscustomizable>
+  <name>R_SuficienciaDetalle</name>
+  <parentbotid>
+    <schemaname>pft_AgentTower</schemaname>
+  </parentbotid>
+  <statecode>0</statecode>
+  <statuscode>1</statuscode>
+</botcomponent>

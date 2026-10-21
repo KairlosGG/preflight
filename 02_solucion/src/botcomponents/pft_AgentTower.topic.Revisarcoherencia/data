@@ -1,0 +1,57 @@
+kind: AdaptiveDialog
+beginDialog:
+  kind: OnRedirect
+  id: main
+  actions:
+    - kind: SendActivity
+      id: sendActivity_pftCoh0
+      displayName: Mensaje de espera
+      activity: Reviso la coherencia entre lo que has escrito y lo que has marcado. Tarda unos segundos.
+
+    - kind: InvokeAIBuilderModelAction
+      id: invokeAIBuilderModelAction_feAvkD
+      displayName: Indicación Revisar coherencia
+      input:
+        binding:
+          Hechos: "=\"P04b_Alcance: \" & Global.P04b_Alcance & \"; P10_Acciones: \" & Global.P10_Acciones & \"; P11_Fuentes: \" & Global.P11_Fuentes & \"; P12_PaginasMes: \" & Text(Global.P12_PaginasMes) & \"; P13_UsuariosExternos: \" & Global.P13_UsuariosExternos & \"; P14_DatosPersonales: \" & Global.P14_DatosPersonales & \"; P15_AmbitosAnexoIII: \" & Global.P15_AmbitosAnexoIII & \"; P15b_TareaArt6_3: \" & Global.P15b_TareaArt6_3 & \"; P16_RevisionHumana: \" & Global.P16_RevisionHumana & \"; P17_Perfilado: \" & Global.P17_Perfilado & \"; P18_PublicacionExterna: \" & Global.P18_PublicacionExterna & \"; P19_PracticasSensibles: \" & Global.P19_PracticasSensibles"
+          Observaciones: =Coalesce(Global.P19b_Observaciones, "Sin observaciones.")
+          Problema: =Global.P02_Problema
+          SolicitudInicial: =Coalesce(Global.P00_SolicitudInicial, "Sin solicitud inicial.")
+
+      output:
+        binding:
+          predictionOutput: Topic.Coherencia
+
+      aIModelId: a78af6b7-bf01-4bf4-a591-bb8e23a9e836
+
+    - kind: SetVariable
+      id: setVariable_pftCoh1
+      displayName: Estado de coherencia
+      variable: Global.R_Coherencia
+      value: |-
+        =If(
+            Topic.Coherencia.structuredOutput.estado = "coherente" || Topic.Coherencia.structuredOutput.estado = "a_revisar",
+            Topic.Coherencia.structuredOutput.estado,
+            "no_evaluada"
+        )
+
+    - kind: SetVariable
+      id: setVariable_pftCoh2
+      displayName: Detalle de coherencia
+      variable: Global.R_CoherenciaDetalle
+      value: |-
+        =Switch(
+            Global.R_Coherencia,
+            "a_revisar", Concat(Topic.Coherencia.structuredOutput.contradicciones, pregunta & " (marcado: " & marcado & "): " & motivo & " Texto: «" & evidencia & "»", " | "),
+            "coherente", "Sin contradicciones entre lo escrito y lo marcado.",
+            "No se ha podido revisar la coherencia. Revísala a mano."
+        )
+
+    - kind: SetVariable
+      id: setVariable_pftCoh3
+      displayName: Versión del prompt
+      variable: Global.R_VersionPrompt
+      value: =Env.pft_VersionPrompts
+
+inputType: {}
+outputType: {}

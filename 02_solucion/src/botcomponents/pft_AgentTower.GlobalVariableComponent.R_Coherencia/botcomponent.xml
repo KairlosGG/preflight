@@ -1,0 +1,11 @@
+<botcomponent schemaname="pft_AgentTower.GlobalVariableComponent.R_Coherencia">
+  <componenttype>12</componenttype>
+  <description>Resultado del prompt de coherencia: coherente / a_revisar / no_evaluada. No cambia la clasificación de riesgo.</description>
+  <iscustomizable>0</iscustomizable>
+  <name>R_Coherencia</name>
+  <parentbotid>
+    <schemaname>pft_AgentTower</schemaname>
+  </parentbotid>
+  <statecode>0</statecode>
+  <statuscode>1</statuscode>
+</botcomponent>

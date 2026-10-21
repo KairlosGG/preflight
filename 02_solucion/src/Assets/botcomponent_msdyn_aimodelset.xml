@@ -1,0 +1,8 @@
+<botcomponent_msdyn_aimodelset>
+  <botcomponent_msdyn_aimodel botcomponentid.schemaname="pft_AgentTower.topic.Comprobarsuficiencia" msdyn_aimodelid.msdyn_aimodelid="69de5d23-9aeb-4ae1-b696-1bba6fbbbc8c">
+    <iscustomizable>1</iscustomizable>
+  </botcomponent_msdyn_aimodel>
+  <botcomponent_msdyn_aimodel botcomponentid.schemaname="pft_AgentTower.topic.Revisarcoherencia" msdyn_aimodelid.msdyn_aimodelid="a78af6b7-bf01-4bf4-a591-bb8e23a9e836">
+    <iscustomizable>1</iscustomizable>
+  </botcomponent_msdyn_aimodel>
+</botcomponent_msdyn_aimodelset>

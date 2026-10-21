@@ -1,0 +1,98 @@
+kind: AdaptiveDialog
+beginDialog:
+  kind: OnRedirect
+  id: main
+  actions:
+    - kind: InvokeAIBuilderModelAction
+      id: invokeAIBuilderModelAction_SrkkhL
+      displayName: Indicación Comprobar suficiencia
+      input:
+        binding:
+          Area: =Global.P01_Area
+          NombreAgente: =Global.P01_NombreAgente
+          Problema: =Global.P02_Problema
+          SolicitudInicial_9: =Coalesce(Global.P00_SolicitudInicial, "Sin solicitud inicial.")
+
+      output:
+        binding:
+          predictionOutput: Topic.Suficiencia
+
+      aIModelId: 69de5d23-9aeb-4ae1-b696-1bba6fbbbc8c
+
+    - kind: ConditionGroup
+      id: conditionGroup_pftSuf1
+      conditions:
+        - id: conditionItem_pftSuf1
+          condition: =Topic.Suficiencia.structuredOutput.estado = "insuficiente"
+          displayName: Insuficiente
+          actions:
+            - kind: Question
+              id: question_pftSuf1
+              displayName: Pedir más detalle
+              interruptionPolicy:
+                allowInterruption: false
+
+              alwaysPrompt: true
+              variable: init:Topic.Ampliacion
+              prompt: Antes de seguir necesito un poco más de detalle. {Topic.Suficiencia.structuredOutput.pregunta}
+              entity: StringPrebuiltEntity
+
+            - kind: SetVariable
+              id: setVariable_pftSuf1
+              displayName: Añadir ampliación a P02
+              variable: Global.P02_Problema
+              value: "=Global.P02_Problema & \" (Ampliación: \" & Topic.Ampliacion & \")\""
+
+            - kind: InvokeAIBuilderModelAction
+              id: invokeAIBuilderModelAction_pftSuf2
+              displayName: Volver a comprobar suficiencia
+              input:
+                binding:
+                  Area: =Global.P01_Area
+                  NombreAgente: =Global.P01_NombreAgente
+                  Problema: =Global.P02_Problema
+                  SolicitudInicial_9: =Coalesce(Global.P00_SolicitudInicial, "Sin solicitud inicial.")
+
+              output:
+                binding:
+                  predictionOutput: Topic.Suficiencia
+
+              aIModelId: 69de5d23-9aeb-4ae1-b696-1bba6fbbbc8c
+
+    - kind: SetVariable
+      id: setVariable_pftSuf2
+      displayName: Estado de suficiencia
+      variable: Global.R_Suficiencia
+      value: |-
+        =If(
+            Topic.Suficiencia.structuredOutput.estado = "suficiente" || Topic.Suficiencia.structuredOutput.estado = "insuficiente",
+            Topic.Suficiencia.structuredOutput.estado,
+            "no_evaluada"
+        )
+
+    - kind: SetVariable
+      id: setVariable_pftSuf3
+      displayName: Detalle de suficiencia
+      variable: Global.R_SuficienciaDetalle
+      value: |-
+        =Switch(
+            Global.R_Suficiencia,
+            "suficiente", "La descripción permite evaluar el agente.",
+            "insuficiente", "Descripción insuficiente tras pedir más detalle. " & Topic.Suficiencia.structuredOutput.falta,
+            "No se ha podido comprobar la suficiencia de la descripción. Revísala a mano."
+        )
+
+    - kind: ConditionGroup
+      id: conditionGroup_pftSuf2
+      conditions:
+        - id: conditionItem_pftSuf2
+          condition: =Global.R_Suficiencia = "insuficiente"
+          displayName: Insuficiente tras ampliar
+          actions:
+            - kind: SendActivity
+              id: sendActivity_pftSuf1
+              displayName: Aviso de seguir
+              activity: Seguimos con la entrevista. Quien apruebe la evaluación verá que la descripción necesita más detalle.
+
+inputType: {}
+outputType: {}

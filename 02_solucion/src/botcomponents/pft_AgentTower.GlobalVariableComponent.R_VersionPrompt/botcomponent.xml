@@ -1,0 +1,11 @@
+<botcomponent schemaname="pft_AgentTower.GlobalVariableComponent.R_VersionPrompt">
+  <componenttype>12</componenttype>
+  <description>Valor de pft_VersionPrompts con el que se hizo la revisión de coherencia.</description>
+  <iscustomizable>0</iscustomizable>
+  <name>R_VersionPrompt</name>
+  <parentbotid>
+    <schemaname>pft_AgentTower</schemaname>
+  </parentbotid>
+  <statecode>0</statecode>
+  <statuscode>1</statuscode>
+</botcomponent>

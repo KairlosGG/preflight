@@ -17,6 +17,7 @@ Guarda siempre las dos versiones:
 | Preflight_0.1.0.4_2026-10-20_unmanaged.zip | 0.1.0.4 | No administrada | 2026-10-20 | Bloque B (Valor) con tarjeta validada, regla de coherencia de usuarios con tarjeta de corrección y variables globales P04-P09 |
 | Preflight_0.1.0.5_2026-10-21_unmanaged.zip | 0.1.0.5 | No administrada | 2026-10-21 | Bloques C (Funcionamiento) y D (Riesgo) con una tarjeta cada uno, reglas de coherencia de P15 y P19, tarjeta de la excepción del art. 6.3 y variables globales P10-P19 y P15b |
 | Preflight_0.1.0.6_2026-10-21_unmanaged.zip | 0.1.0.6 | No administrada | 2026-10-21 | Motor de reglas deterministas (tema Clasificar riesgo, reglas 0.1.0) con variables R_*, pregunta de alcance P04b, observaciones P19b e interrupciones desactivadas en el bloque A |
+| Preflight_0.1.0.7_2026-10-21_unmanaged.zip | 0.1.0.7 | No administrada | 2026-10-21 | Primeras piezas de IA: indicaciones Comprobar suficiencia y Revisar coherencia (GPT-5 chat, temperatura 0, salida JSON) en sus temas, variables R_Suficiencia, R_SuficienciaDetalle, R_Coherencia, R_CoherenciaDetalle y R_VersionPrompt, variable de entorno pft_VersionPrompts (0.1.0). Depende de la solución administrada AI Solution default templates |
 
 ## Fuente descomprimida
 

@@ -7,7 +7,7 @@
     <Descriptions>
       <Description description="Agent Tower: agente de admisión de agentes para Microsoft 365." languagecode="3082" />
     </Descriptions>
-    <Version>0.1.0.6</Version>
+    <Version>0.1.0.7</Version>
     <Managed>0</Managed>
     <Publisher>
       <UniqueName>preflight</UniqueName>
@@ -80,7 +80,10 @@
         </Address>
       </Addresses>
     </Publisher>
-    <RootComponents />
+    <RootComponents>
+      <RootComponent type="401" id="{69de5d23-9aeb-4ae1-b696-1bba6fbbbc8c}" behavior="0" />
+      <RootComponent type="401" id="{a78af6b7-bf01-4bf4-a591-bb8e23a9e836}" behavior="0" />
+    </RootComponents>
     <MissingDependencies />
   </SolutionManifest>
 </ImportExportXml>
