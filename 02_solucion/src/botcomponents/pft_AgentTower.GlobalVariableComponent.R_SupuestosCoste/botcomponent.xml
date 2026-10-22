@@ -1,0 +1,11 @@
+<botcomponent schemaname="pft_AgentTower.GlobalVariableComponent.R_SupuestosCoste">
+  <componenttype>12</componenttype>
+  <description>Resultado. Texto legible con los supuestos usados en el coste (usos, respuestas, acciones, páginas, parte facturable y margen) para la ficha y el aprobador.</description>
+  <iscustomizable>0</iscustomizable>
+  <name>R_SupuestosCoste</name>
+  <parentbotid>
+    <schemaname>pft_AgentTower</schemaname>
+  </parentbotid>
+  <statecode>0</statecode>
+  <statuscode>1</statuscode>
+</botcomponent>

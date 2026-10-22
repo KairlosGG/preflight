@@ -1,0 +1,10 @@
+<botcomponent schemaname="pft_AgentTower.topic.Proponerdecisin">
+  <componenttype>9</componenttype>
+  <iscustomizable>0</iscustomizable>
+  <name>Proponer decisión</name>
+  <parentbotid>
+    <schemaname>pft_AgentTower</schemaname>
+  </parentbotid>
+  <statecode>0</statecode>
+  <statuscode>1</statuscode>
+</botcomponent>

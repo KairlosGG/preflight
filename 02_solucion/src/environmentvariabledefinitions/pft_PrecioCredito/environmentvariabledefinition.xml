@@ -1,0 +1,14 @@
+<environmentvariabledefinition schemaname="pft_PrecioCredito">
+  <defaultvalue>0.006932</defaultvalue>
+  <description default="Precio de un crédito de Copilot en la moneda de pft_Moneda. Valor por defecto: precio oficial del paquete de 25.000 créditos en España (173,30 € al mes, microsoft.com/es-es, consultado el 21/10/2026). Cada organización lo ajusta al instalar con el precio de su país o su contrato. Lo usan las fórmulas de coste y el ratio de valor.">
+    <label description="Precio de un crédito de Copilot en la moneda de pft_Moneda. Valor por defecto: precio oficial del paquete de 25.000 créditos en España (173,30 € al mes, microsoft.com/es-es, consultado el 21/10/2026). Cada organización lo ajusta al instalar con el precio de su país o su contrato. Lo usan las fórmulas de coste y el ratio de valor." languagecode="3082" />
+  </description>
+  <displayname default="Precio por crédito de Copilot">
+    <label description="Precio por crédito de Copilot" languagecode="3082" />
+  </displayname>
+  <introducedversion>0.1.0.7</introducedversion>
+  <iscustomizable>1</iscustomizable>
+  <isrequired>0</isrequired>
+  <secretstore>0</secretstore>
+  <type>100000001</type>
+</environmentvariabledefinition>

@@ -13,7 +13,7 @@ beginDialog:
       displayName: Indicación Revisar coherencia
       input:
         binding:
-          Hechos: "=\"P04b_Alcance: \" & Global.P04b_Alcance & \"; P10_Acciones: \" & Global.P10_Acciones & \"; P11_Fuentes: \" & Global.P11_Fuentes & \"; P12_PaginasMes: \" & Text(Global.P12_PaginasMes) & \"; P13_UsuariosExternos: \" & Global.P13_UsuariosExternos & \"; P14_DatosPersonales: \" & Global.P14_DatosPersonales & \"; P15_AmbitosAnexoIII: \" & Global.P15_AmbitosAnexoIII & \"; P15b_TareaArt6_3: \" & Global.P15b_TareaArt6_3 & \"; P16_RevisionHumana: \" & Global.P16_RevisionHumana & \"; P17_Perfilado: \" & Global.P17_Perfilado & \"; P18_PublicacionExterna: \" & Global.P18_PublicacionExterna & \"; P19_PracticasSensibles: \" & Global.P19_PracticasSensibles"
+          Hechos: "=\"P04b_Alcance: \" & Global.P04b_Alcance & \"; P10_Acciones: \" & Global.P10_Acciones & \"; P11_Fuentes: \" & Global.P11_Fuentes & \"; P13_UsuariosExternos: \" & Global.P13_UsuariosExternos & \"; P14_DatosPersonales: \" & Global.P14_DatosPersonales & \"; P15_AmbitosAnexoIII: \" & Global.P15_AmbitosAnexoIII & If(IsBlank(Global.P15b_TareaArt6_3), \"\", \"; P15b_TareaArt6_3: \" & Global.P15b_TareaArt6_3) & If(IsBlank(Global.P16_RevisionHumana), \"\", \"; P16_RevisionHumana: \" & Global.P16_RevisionHumana) & \"; P17_Perfilado: \" & Global.P17_Perfilado & \"; P18_PublicacionExterna: \" & Global.P18_PublicacionExterna & \"; P19_PracticasSensibles: \" & Global.P19_PracticasSensibles"
           Observaciones: =Coalesce(Global.P19b_Observaciones, "Sin observaciones.")
           Problema: =Global.P02_Problema
           SolicitudInicial: =Coalesce(Global.P00_SolicitudInicial, "Sin solicitud inicial.")
@@ -36,13 +36,32 @@ beginDialog:
         )
 
     - kind: SetVariable
+      id: pftCohEtiquetas
+      displayName: Nombres legibles de las preguntas
+      variable: Topic.Etiquetas
+      value: |-
+        =[
+          { codigo: "P04b_", etiqueta: "Quién lo usará" },
+          { codigo: "P10_", etiqueta: "Qué hará el agente" },
+          { codigo: "P11_", etiqueta: "De dónde sacará la información" },
+          { codigo: "P13_", etiqueta: "Uso por personas externas" },
+          { codigo: "P14_", etiqueta: "Datos personales" },
+          { codigo: "P15_", etiqueta: "Decisiones sobre personas" },
+          { codigo: "P15b_", etiqueta: "Tipo de tarea (art. 6.3)" },
+          { codigo: "P16_", etiqueta: "Revisión humana de cada resultado" },
+          { codigo: "P17_", etiqueta: "Perfiles o puntuaciones de personas" },
+          { codigo: "P18_", etiqueta: "Contenido publicado fuera" },
+          { codigo: "P19_", etiqueta: "Prácticas sensibles" }
+        ]
+
+    - kind: SetVariable
       id: setVariable_pftCoh2
       displayName: Detalle de coherencia
       variable: Global.R_CoherenciaDetalle
       value: |-
         =Switch(
             Global.R_Coherencia,
-            "a_revisar", Concat(Topic.Coherencia.structuredOutput.contradicciones, pregunta & " (marcado: " & marcado & "): " & motivo & " Texto: «" & evidencia & "»", " | "),
+            "a_revisar", Concat(Topic.Coherencia.structuredOutput.contradicciones, Coalesce(LookUp(Topic.Etiquetas, StartsWith(pregunta, codigo), etiqueta), pregunta) & ": " & motivo & " Lo que escribiste: «" & evidencia & "»", " | "),
             "coherente", "Sin contradicciones entre lo escrito y lo marcado.",
             "No se ha podido revisar la coherencia. Revísala a mano."
         )

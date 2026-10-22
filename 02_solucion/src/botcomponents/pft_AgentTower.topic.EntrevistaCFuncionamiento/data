@@ -28,7 +28,7 @@ beginDialog:
                 { title: "Sitios web públicos", value: "web" },
                 { title: "Otros sistemas de la organización o de terceros (ERP, CRM, bases de datos…)", value: "sistemas" }
               ] },
-            { type: "Input.Number", id: "paginasMes", label: "¿Cuántas páginas de documentos o imágenes procesará al mes? Pon 0 si no procesa ninguna.", value: Global.P12_PaginasMes, min: 0, max: 1000000, isRequired: true, errorMessage: "Indica un número entre 0 y 1.000.000." },
+            { type: "Input.Number", id: "paginasMes", label: "¿Cuántas páginas de documentos o imágenes tendrá que analizar al mes para extraer datos (facturas, formularios, escaneos, fotos)? No cuentes los documentos de SharePoint que solo consulte para responder. Pon 0 si no analiza ninguno.", value: Global.P12_PaginasMes, min: 0, max: 1000000, isRequired: true, errorMessage: "Indica un número entre 0 y 1.000.000." },
             { type: "Input.ChoiceSet", id: "usuariosExternos", label: "¿Lo usarán personas externas a la organización?", value: Global.P13_UsuariosExternos, style: "expanded", isRequired: true, errorMessage: "Elige una opción.",
               choices: [
                 { title: "No, solo personas de la organización", value: "no" },

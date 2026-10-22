@@ -1,0 +1,173 @@
+kind: AdaptiveDialog
+beginDialog:
+  kind: OnRedirect
+  id: main
+  actions:
+    - kind: SetVariable
+      id: pftTarifas
+      displayName: Cargar tarifas
+      variable: Topic.Tarifas
+      value: |-
+        ={
+          fechaTarifas: "01/10/2026",
+          fuenteTarifas: "Microsoft Learn, Billing rates and management",
+          respuestaClasica: 1,
+          respuestaGenerativa: 2,
+          accionAgente: 5,
+          groundingGraph: 10,
+          paginaContenido: 8,
+          precioCreditoUSD: 0.01
+        }
+
+    - kind: SetVariable
+      id: pftSupuestos
+      displayName: Cargar supuestos
+      variable: Topic.Supuestos
+      value: |-
+        ={
+          respuestasPorUsoBajo: 1,
+          respuestasPorUsoAlto: 6,
+          accionesPorUsoBajo: 1,
+          accionesPorUsoAlto: 4,
+          accionesPorSistemas: 1,
+          margenAlto: 1.2,
+          factorPrudente: 0.5,
+          umbralPiloto: 1,
+          umbralConstruir: 3
+        }
+
+    - kind: SetVariable
+      id: pftUsosMes
+      displayName: Usos al mes
+      variable: Topic.UsosMes
+      value: =Global.P04_UsuariosMes * Global.P07_UsosPorPersonaMes
+
+    - kind: SetVariable
+      id: pftFactor
+      displayName: Parte facturable
+      variable: Topic.FactorFacturable
+      value: =If(Global.P13_UsuariosExternos = "no", (Global.P04_UsuariosMes - Global.P05_UsuariosConLicencia) / Global.P04_UsuariosMes, 1)
+
+    - kind: SetVariable
+      id: pftPrecioResp
+      displayName: Créditos por respuesta
+      variable: Topic.PrecioRespuesta
+      value: |-
+        =If(
+          "sharepoint" in Global.P11_Fuentes || "graph" in Global.P11_Fuentes || "web" in Global.P11_Fuentes,
+          Topic.Tarifas.respuestaGenerativa,
+          Topic.Tarifas.respuestaClasica
+        ) + If("graph" in Global.P11_Fuentes, Topic.Tarifas.groundingGraph, 0)
+
+    - kind: SetVariable
+      id: pftAccBajo
+      displayName: Acciones por uso bajo
+      variable: Topic.AccionesBajo
+      value: =If(Global.P10_Acciones <> "responde", Topic.Supuestos.accionesPorUsoBajo, 0) + If("sistemas" in Global.P11_Fuentes, Topic.Supuestos.accionesPorSistemas, 0)
+
+    - kind: SetVariable
+      id: pftAccAlto
+      displayName: Acciones por uso alto
+      variable: Topic.AccionesAlto
+      value: =If(Global.P10_Acciones <> "responde", Topic.Supuestos.accionesPorUsoAlto, 0) + If("sistemas" in Global.P11_Fuentes, Topic.Supuestos.accionesPorSistemas, 0)
+
+    - kind: SetVariable
+      id: pftCredPag
+      displayName: Créditos por páginas
+      variable: Topic.CreditosPaginas
+      value: =Coalesce(Global.P12_PaginasMes, 0) * Topic.Tarifas.paginaContenido
+
+    - kind: SetVariable
+      id: pftCredBajo
+      displayName: Créditos al mes bajo
+      variable: Global.R_CreditosMesBajo
+      value: =RoundUp((Topic.UsosMes * (Topic.Supuestos.respuestasPorUsoBajo * Topic.PrecioRespuesta + Topic.AccionesBajo * Topic.Tarifas.accionAgente) + Topic.CreditosPaginas) * Topic.FactorFacturable, 0)
+
+    - kind: SetVariable
+      id: pftCredAlto
+      displayName: Créditos al mes alto
+      variable: Global.R_CreditosMesAlto
+      value: =RoundUp((Topic.UsosMes * (Topic.Supuestos.respuestasPorUsoAlto * Topic.PrecioRespuesta + Topic.AccionesAlto * Topic.Tarifas.accionAgente) + Topic.CreditosPaginas) * Topic.FactorFacturable * Topic.Supuestos.margenAlto, 0)
+
+    - kind: SetVariable
+      id: pftCosteBajo
+      displayName: Coste al mes bajo
+      variable: Global.R_CosteMesBajo
+      value: =Round(Global.R_CreditosMesBajo * Env.pft_PrecioCredito, 2)
+
+    - kind: SetVariable
+      id: pftCosteAlto
+      displayName: Coste al mes alto
+      variable: Global.R_CosteMesAlto
+      value: =Round(Global.R_CreditosMesAlto * Env.pft_PrecioCredito, 2)
+
+    - kind: SetVariable
+      id: pftUSDBajo
+      displayName: Coste en USD bajo
+      variable: Global.R_CosteMesUSDBajo
+      value: =Round(Global.R_CreditosMesBajo * Topic.Tarifas.precioCreditoUSD, 2)
+
+    - kind: SetVariable
+      id: pftUSDAlto
+      displayName: Coste en USD alto
+      variable: Global.R_CosteMesUSDAlto
+      value: =Round(Global.R_CreditosMesAlto * Topic.Tarifas.precioCreditoUSD, 2)
+
+    - kind: SetVariable
+      id: pftValor
+      displayName: Valor al mes
+      variable: Global.R_ValorMes
+      value: =Round(Topic.UsosMes * Global.P06_MinutosAhorradosPorUso / 60 * Env.pft_CosteHora * Topic.Supuestos.factorPrudente, 2)
+
+    - kind: SetVariable
+      id: pftMant
+      displayName: Coste de mantenimiento
+      variable: Global.R_CosteMantenimientoMes
+      value: =Round(Global.P09b_HorasMantenimientoMes * Env.pft_CosteHora, 2)
+
+    - kind: SetVariable
+      id: pftRatio
+      displayName: Ratio de valor
+      variable: Global.R_Ratio
+      value: =If(Global.R_CosteMesAlto + Global.R_CosteMantenimientoMes > 0, Round(Global.R_ValorMes / (Global.R_CosteMesAlto + Global.R_CosteMantenimientoMes), 2), Blank())
+
+    - kind: SetVariable
+      id: pftDecValor
+      displayName: Decisión por valor
+      variable: Global.R_DecisionValor
+      value: |-
+        =If(
+          Global.R_ValorMes = 0, "no_construir_por_valor",
+          IsBlank(Global.R_Ratio), "construir",
+          Global.R_Ratio < Topic.Supuestos.umbralPiloto, "no_construir_por_valor",
+          Global.R_Ratio <= Topic.Supuestos.umbralConstruir, "piloto",
+          "construir"
+        )
+
+    - kind: SetVariable
+      id: pftAvisoAIB
+      displayName: Aviso de AI Builder
+      variable: Global.R_AvisoAIBuilder
+      value: =Coalesce(Global.P12_PaginasMes, 0) > 0
+
+    - kind: SetVariable
+      id: pftFechaTar
+      displayName: Fecha de tarifas
+      variable: Global.R_FechaTarifas
+      value: =Topic.Tarifas.fechaTarifas & " (" & Topic.Tarifas.fuenteTarifas & ")"
+
+    - kind: SetVariable
+      id: pftSupCoste
+      displayName: Supuestos del coste
+      variable: Global.R_SupuestosCoste
+      value: |-
+        ="Usos al mes: " & Text(Topic.UsosMes) &
+        ". Por uso: de " & Text(Topic.Supuestos.respuestasPorUsoBajo) & " a " & Text(Topic.Supuestos.respuestasPorUsoAlto) & " respuestas a " & Text(Topic.PrecioRespuesta) & " créditos" &
+        If("graph" in Global.P11_Fuentes, " (incluye grounding en Graph)", "") &
+        "; de " & Text(Topic.AccionesBajo) & " a " & Text(Topic.AccionesAlto) & " acciones a " & Text(Topic.Tarifas.accionAgente) & " créditos" &
+        ". Páginas al mes: " & Text(Coalesce(Global.P12_PaginasMes, 0)) & " a " & Text(Topic.Tarifas.paginaContenido) & " créditos" &
+        ". Parte facturable: " & Text(Round(Topic.FactorFacturable * 100, 0)) & " %" & If(Global.P13_UsuariosExternos = "no", " (los usuarios internos con licencia de Microsoft 365 Copilot no consumen créditos)", " (hay usuarios externos: se factura todo)") &
+        ". El alto lleva un margen del 20 %. No incluye las acciones internas de los agent flows ni los prompts del agente: afínalo con el estimador de uso de agentes de Microsoft al diseñarlo."
+
+inputType: {}
+outputType: {}

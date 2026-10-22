@@ -36,10 +36,10 @@ beginDialog:
         - variable: Global.P07_UsosPorPersonaMes
           value: =Blank()
 
-        - variable: Global.P08_CosteHoraEUR
+        - variable: Global.P09_CriterioRetirada
           value: =Blank()
 
-        - variable: Global.P09_CriterioRetirada
+        - variable: Global.P09b_HorasMantenimientoMes
           value: =Blank()
 
         - variable: Global.P10_Acciones
@@ -117,6 +117,51 @@ beginDialog:
         - variable: Global.R_VersionPrompt
           value: =Blank()
 
+        - variable: Global.R_CreditosMesBajo
+          value: =Blank()
+
+        - variable: Global.R_CreditosMesAlto
+          value: =Blank()
+
+        - variable: Global.R_CosteMesBajo
+          value: =Blank()
+
+        - variable: Global.R_CosteMesAlto
+          value: =Blank()
+
+        - variable: Global.R_CosteMesUSDBajo
+          value: =Blank()
+
+        - variable: Global.R_CosteMesUSDAlto
+          value: =Blank()
+
+        - variable: Global.R_ValorMes
+          value: =Blank()
+
+        - variable: Global.R_CosteMantenimientoMes
+          value: =Blank()
+
+        - variable: Global.R_Ratio
+          value: =Blank()
+
+        - variable: Global.R_DecisionValor
+          value: =Blank()
+
+        - variable: Global.R_AvisoAIBuilder
+          value: =Blank()
+
+        - variable: Global.R_FechaTarifas
+          value: =Blank()
+
+        - variable: Global.R_SupuestosCoste
+          value: =Blank()
+
+        - variable: Global.R_DecisionFinal
+          value: =Blank()
+
+        - variable: Global.R_FichaConfirmada
+          value: =Blank()
+
     - kind: SetVariable
       id: setVariable_Pexg1I
       displayName: P00 Solicitud inicial
@@ -126,7 +171,7 @@ beginDialog:
     - kind: SendActivity
       id: sendActivity_gZBlU2
       displayName: Introducción
-      activity: "Te haré 19 preguntas en cuatro bloques: identificación, valor, funcionamiento y riesgo. Son unos 5 minutos. Empezamos por la identificación."
+      activity: "Te haré unas preguntas en cuatro bloques: identificación, valor, funcionamiento y riesgo. Al final verás la ficha con la decisión propuesta y podrás corregir lo que haga falta. Empezamos por la identificación."
 
     - kind: BeginDialog
       id: 01xfk9
@@ -163,23 +208,20 @@ beginDialog:
       displayName: Ir a revisar coherencia
       dialog: pft_AgentTower.topic.Revisarcoherencia
 
-    - kind: SendActivity
-      id: sendActivity_cyzR8L
-      displayName: Cierre provisional
-      activity: |-
-        Clasificación preliminar de {Global.P01_NombreAgente} ({Global.P01_Area}):
-        - Categoría: {Global.R_Categoria}
-        - Zona propuesta: {Global.R_Zona}
-        - Decisión por riesgo: {Global.R_DecisionRiesgo}
-        - Referencias: {Global.R_Referencias}
-        - Suficiencia: {Global.R_Suficiencia}
-        - Detalle de suficiencia: {Global.R_SuficienciaDetalle}
-        - Coherencia: {Global.R_Coherencia}
-        - Detalle de coherencia: {Global.R_CoherenciaDetalle}
-        - Versión de reglas: {Global.R_VersionReglas}
-        - Versión del prompt: {Global.R_VersionPrompt}
-        La ficha completa, con valor y coste, todavía está en construcción.
-        _Orientación preliminar generada con IA. No constituye asesoramiento jurídico ni evaluación de conformidad. La clasificación debe validarla una persona responsable._
+    - kind: BeginDialog
+      id: pftGoCalc
+      displayName: Ir a calcular valor y coste
+      dialog: pft_AgentTower.topic.Calcularvalorycoste
+
+    - kind: BeginDialog
+      id: pftGoDec
+      displayName: Ir a proponer decisión
+      dialog: pft_AgentTower.topic.Proponerdecisin
+
+    - kind: BeginDialog
+      id: pftGoFicha
+      displayName: Ir a mostrar ficha
+      dialog: pft_AgentTower.topic.Mostrarficha
 
     - kind: SetVariable
       id: setVariable_cLXHDL

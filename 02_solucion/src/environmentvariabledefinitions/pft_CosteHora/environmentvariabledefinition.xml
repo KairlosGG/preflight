@@ -1,0 +1,14 @@
+<environmentvariabledefinition schemaname="pft_CosteHora">
+  <defaultvalue>26.18</defaultvalue>
+  <description default="Coste laboral por hora que usa Preflight para valorar el tiempo ahorrado y el mantenimiento, en la moneda de pft_Moneda. Una sola tarifa para toda la organización, como en el informe de impacto de Microsoft 365 Copilot. Valor por defecto: coste laboral por hora efectiva en España, INE, Encuesta Trimestral de Coste Laboral, 2.º trimestre de 2026 (26,18 €, publicada el 17/09/2026). Finanzas o RR. HH. lo ajustan al instalar.">
+    <label description="Coste laboral por hora que usa Preflight para valorar el tiempo ahorrado y el mantenimiento, en la moneda de pft_Moneda. Una sola tarifa para toda la organización, como en el informe de impacto de Microsoft 365 Copilot. Valor por defecto: coste laboral por hora efectiva en España, INE, Encuesta Trimestral de Coste Laboral, 2.º trimestre de 2026 (26,18 €, publicada el 17/09/2026). Finanzas o RR. HH. lo ajustan al instalar." languagecode="3082" />
+  </description>
+  <displayname default="Coste por hora de referencia">
+    <label description="Coste por hora de referencia" languagecode="3082" />
+  </displayname>
+  <introducedversion>0.1.0.7</introducedversion>
+  <iscustomizable>1</iscustomizable>
+  <isrequired>0</isrequired>
+  <secretstore>0</secretstore>
+  <type>100000001</type>
+</environmentvariabledefinition>

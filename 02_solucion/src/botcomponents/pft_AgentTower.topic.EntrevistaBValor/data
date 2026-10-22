@@ -13,7 +13,7 @@ beginDialog:
           version: "1.5",
           body: [
             { type: "TextBlock", text: "Valor del agente", weight: "Bolder", size: "Medium", wrap: true },
-            { type: "TextBlock", text: "Usa estimaciones razonables. Con estos datos se calculan el valor mensual y el coste en Copilot Credits.", wrap: true, isSubtle: true },
+            { type: "TextBlock", text: "Con estos datos se calculan el valor mensual, el coste en Copilot Credits y si compensa construirlo. Si no tienes la cifra exacta, pon tu mejor estimación.", wrap: true, isSubtle: true },
             { type: "Input.ChoiceSet", id: "alcance", label: "¿Quién de la organización lo usará?", style: "expanded", isRequired: true, errorMessage: "Elige una opción.",
               choices: [
                 { title: "Solo yo", value: "personal" },
@@ -25,7 +25,7 @@ beginDialog:
             { type: "Input.Number", id: "usuariosConLicencia", label: "De ellas, ¿cuántas tienen licencia de Microsoft 365 Copilot?", value: Global.P05_UsuariosConLicencia, min: 0, max: 1000000, isRequired: true, errorMessage: "Indica un número entre 0 y 1.000.000. Si no lo sabes, pon 0." },
             { type: "Input.Number", id: "minutosAhorradosPorUso", label: "¿Cuántos minutos ahorra cada uso?", value: Global.P06_MinutosAhorradosPorUso, min: 0, max: 480, isRequired: true, errorMessage: "Indica un número de minutos entre 0 y 480." },
             { type: "Input.Number", id: "usosPorPersonaMes", label: "¿Cuántas veces lo usará cada persona al mes?", value: Global.P07_UsosPorPersonaMes, min: 1, max: 1000, isRequired: true, errorMessage: "Indica un número entre 1 y 1.000." },
-            { type: "Input.Number", id: "costeHoraEUR", label: "Coste por hora cargado del perfil que lo usará (€)", value: Global.P08_CosteHoraEUR, min: 1, max: 500, isRequired: true, errorMessage: "Indica un importe entre 1 y 500 €." },
+            { type: "Input.Number", id: "horasMantenimientoMes", label: "¿Cuántas horas al mes dedicaréis tú o tu equipo a mantenerlo?", placeholder: "Ej.: 2 (revisar respuestas, actualizar contenidos, atender incidencias)", value: Global.P09b_HorasMantenimientoMes, min: 0, max: 160, isRequired: true, errorMessage: "Indica un número de horas entre 0 y 160." },
             { type: "Input.Text", id: "criterioRetirada", label: "¿Qué métrica y umbral usarás para retirarlo a los 90 días?", value: Global.P09_CriterioRetirada, placeholder: "Ej.: menos de 50 consultas al mes", isMultiline: true, maxLength: 300, isRequired: true, errorMessage: "Indica una métrica y un umbral." }
           ],
           actions: [
@@ -36,8 +36,8 @@ beginDialog:
         binding:
           actionSubmitId: Topic.actionSubmitId
           alcance: Global.P04b_Alcance
-          costeHoraEUR: Global.P08_CosteHoraEUR
           criterioRetirada: Global.P09_CriterioRetirada
+          horasMantenimientoMes: Global.P09b_HorasMantenimientoMes
           minutosAhorradosPorUso: Global.P06_MinutosAhorradosPorUso
           usosPorPersonaMes: Global.P07_UsosPorPersonaMes
           usuariosConLicencia: Global.P05_UsuariosConLicencia
@@ -47,8 +47,8 @@ beginDialog:
         properties:
           actionSubmitId: String
           alcance: String
-          costeHoraEUR: Number
           criterioRetirada: String
+          horasMantenimientoMes: Number
           minutosAhorradosPorUso: Number
           usosPorPersonaMes: Number
           usuariosConLicencia: Number

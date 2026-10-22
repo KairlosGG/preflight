@@ -1,0 +1,227 @@
+kind: AdaptiveDialog
+beginDialog:
+  kind: OnRedirect
+  id: main
+  actions:
+    - kind: AdaptiveCardPrompt
+      id: pftFichaCard
+      displayName: Ficha
+      card: |-
+        ={
+          type: "AdaptiveCard",
+          '$schema': "http://adaptivecards.io/schemas/adaptive-card.json",
+          version: "1.5",
+          body: [
+            { type: "TextBlock", text: "Ficha de evaluación", weight: "Bolder", size: "Large", wrap: true },
+            { type: "TextBlock", text: Global.P01_NombreAgente & " · " & Global.P01_Area, isSubtle: true, spacing: "None", wrap: true },
+            { type: "Container", style: Switch(Global.R_DecisionFinal, "construir", "good", "piloto", "accent", "pedir_mas_informacion", "warning", "revisar_respuestas", "warning", "revision_juridica", "warning", "attention"), bleed: true, spacing: "Medium",
+              items: [
+                { type: "TextBlock", text: "Decisión propuesta", size: "Small", wrap: true },
+                { type: "TextBlock", weight: "Bolder", size: "Medium", wrap: true,
+                  text: Switch(Global.R_DecisionFinal,
+                    "no_construir", "No construir: incluye una práctica prohibida por el AI Act",
+                    "no_construir_sin_asesoria", "No construir sin asesoría jurídica: sería un sistema de alto riesgo",
+                    "revision_juridica", "Revisión jurídica antes de construir",
+                    "pedir_mas_informacion", "Falta información: amplía la descripción antes de decidir",
+                    "revisar_respuestas", "Revisa tus respuestas: no coinciden con lo que has descrito (detalle en Calidad de la información)",
+                    "no_construir_por_valor", "No construir: el valor no compensa el coste",
+                    "piloto", "Piloto antes de construir",
+                    "construir", "Construir",
+                    "Sin decisión") },
+                { type: "TextBlock", wrap: true, spacing: "Small",
+                  isVisible: Global.R_DecisionFinal in ["piloto", "construir"] && Global.R_DecisionRiesgo in ["construir_con_aprobacion", "construir_con_aviso_ia"],
+                  text: If(Global.R_DecisionRiesgo = "construir_con_aprobacion", "Condición: una persona debe aprobar las acciones del agente o la excepción del art. 6.3 antes de que tengan efecto.", "Condición: el agente debe avisar de que es un sistema de IA (art. 50 del AI Act).") },
+                { type: "TextBlock", text: "La propone Preflight y la confirma o cambia una persona en la aprobación.", size: "Small", isSubtle: true, wrap: true, spacing: "Small" }
+              ] },
+
+            { type: "TextBlock", text: "Identificación", weight: "Bolder", spacing: "Large", separator: true, wrap: true },
+            { type: "FactSet", facts: [
+                { title: "Agente", value: Global.P01_NombreAgente },
+                { title: "Área", value: Global.P01_Area },
+                { title: "Propietario", value: Global.P03_Propietario },
+                { title: "Problema", value: Global.P02_Problema },
+                { title: "Fecha", value: Text(Today(), "dd/mm/yyyy") }
+              ] },
+
+            { type: "TextBlock", text: "Valor y coste al mes", weight: "Bolder", spacing: "Large", separator: true, wrap: true },
+            { type: "FactSet", facts: [
+                { title: "Uso", value: Text(Global.P04_UsuariosMes, "#,##0", "es-ES") & If(Global.P04_UsuariosMes = 1, " persona × ", " personas × ") & Text(Global.P07_UsosPorPersonaMes, "#,##0", "es-ES") & If(Global.P07_UsosPorPersonaMes = 1, " uso al mes", " usos al mes") },
+                { title: "Valor estimado", value: Text(Global.R_ValorMes, "#,##0.00", "es-ES") & " " & Env.pft_Moneda },
+                { title: "Copilot Credits", value: Text(Global.R_CreditosMesBajo, "#,##0", "es-ES") & " a " & Text(Global.R_CreditosMesAlto, "#,##0", "es-ES") },
+                { title: "Coste estimado", value: Text(Global.R_CosteMesBajo, "#,##0.00", "es-ES") & " a " & Text(Global.R_CosteMesAlto, "#,##0.00", "es-ES") & " " & Env.pft_Moneda },
+                { title: "Pago por uso", value: Text(Global.R_CosteMesUSDBajo, "#,##0.00", "es-ES") & " a " & Text(Global.R_CosteMesUSDAlto, "#,##0.00", "es-ES") & " USD" },
+                { title: "Mantenimiento", value: Text(Global.P09b_HorasMantenimientoMes, "#,##0", "es-ES") & " h · " & Text(Global.R_CosteMantenimientoMes, "#,##0.00", "es-ES") & " " & Env.pft_Moneda },
+                { title: "Ratio valor/coste", value: If(IsBlank(Global.R_Ratio), "Sin coste", Text(Global.R_Ratio, "#,##0.00", "es-ES")) },
+                { title: "Por valor", value: Switch(Global.R_DecisionValor, "no_construir_por_valor", "No compensa (ratio menor que 1)", "piloto", "Piloto (ratio entre 1 y 3)", "Compensa (ratio mayor que 3)") },
+                { title: "Con licencia de M365 Copilot", value: Text(Global.P05_UsuariosConLicencia, "#,##0", "es-ES") & " de " & Text(Global.P04_UsuariosMes, "#,##0", "es-ES") },
+                { title: "Retirada a los 90 días", value: Global.P09_CriterioRetirada }
+              ] },
+            { type: "TextBlock", wrap: true, color: "Warning", size: "Small", isVisible: Global.R_AvisoAIBuilder,
+              text: "Procesa documentos o imágenes: cada página consume 8 Copilot Credits. Desde el 1/11/2026 las licencias premium nuevas de Power Apps y Power Automate ya no incluyen créditos de AI Builder (los existentes se respetan hasta el fin del contrato) y no se convierten en Copilot Credits." },
+            { type: "ActionSet", actions: [ { type: "Action.ToggleVisibility", title: "Ver supuestos del coste", targetElements: [ "pftSupuestos" ] } ] },
+            { type: "Container", id: "pftSupuestos", isVisible: false,
+              items: [
+                { type: "TextBlock", text: Global.R_SupuestosCoste, size: "Small", wrap: true },
+                { type: "TextBlock", size: "Small", wrap: true, text: "Tarifas: " & Global.R_FechaTarifas & ". Precio por crédito: " & Text(Env.pft_PrecioCredito, "0.000000", "es-ES") & " " & Env.pft_Moneda & ". Coste por hora: " & Text(Env.pft_CosteHora, "#,##0.00", "es-ES") & " " & Env.pft_Moneda & ". Valor con factor prudente de 0,5." },
+                { type: "TextBlock", size: "Small", wrap: true, text: "Afina el coste con el [estimador de uso de agentes de Microsoft](https://microsoft.github.io/copilot-studio-estimator/) cuando diseñes el agente." }
+              ] },
+
+            { type: "TextBlock", text: "Riesgo", weight: "Bolder", spacing: "Large", separator: true, wrap: true },
+            { type: "FactSet", facts: [
+                { title: "Categoría (AI Act)", value: Switch(Global.R_Categoria, "prohibido", "Práctica prohibida (art. 5)", "revision_juridica", "Requiere revisión jurídica", "alto_riesgo", "Alto riesgo (Anexo III)", "excepcion_6_3", "Anexo III con excepción del art. 6.3 a confirmar", "minimo", "Riesgo mínimo", "Sin clasificar") },
+                { title: "Transparencia (art. 50)", value: If(Global.R_Transparencia, "Sí: avisar de que es IA", "No") },
+                { title: "Evaluación de impacto (RGPD)", value: If(Global.R_EIPD, "Valorarla: trata datos personales", "No aplica") },
+                { title: "Decisión automatizada (art. 22 RGPD)", value: If(Global.R_Art22, "Posible: falta revisión humana", "No") },
+                { title: "Supervisión humana", value: Switch(Global.P10_Acciones, "acciones_autonomas", "Ejecuta acciones sin confirmación de una persona", "acciones_confirmadas", "Una persona confirma cada acción", "Solo informa, no ejecuta acciones") & If(IsBlank(Global.P16_RevisionHumana), "", If(Global.P16_RevisionHumana = "si", ". Decisiones sobre personas: una persona revisa cada resultado", ". Decisiones sobre personas: sin revisión previa")) & Switch(Global.P18_PublicacionExterna, "con_revision", ". Publicación: con revisión editorial", "sin_revision", ". Publicación: sin revisión humana", "") },
+                { title: "Zona de gobierno", value: Global.R_Zona }
+              ] },
+            { type: "TextBlock", text: "Referencias", size: "Small", weight: "Bolder", wrap: true },
+            { type: "TextBlock", size: "Small", wrap: true, text: If(Len(Coalesce(Global.R_Referencias, "")) = 0, "Ninguna referencia aplicable.", Global.R_Referencias) },
+
+            { type: "TextBlock", text: "Calidad de la información", weight: "Bolder", spacing: "Large", separator: true, wrap: true },
+            { type: "FactSet", facts: [
+                { title: "Descripción", value: Switch(Global.R_Suficiencia, "suficiente", "Suficiente", "insuficiente", "Insuficiente", "No evaluada") },
+                { title: "Coherencia", value: Switch(Global.R_Coherencia, "coherente", "Coherente", "a_revisar", "A revisar", "No evaluada") }
+              ] },
+            { type: "TextBlock", size: "Small", wrap: true, isVisible: Global.R_Suficiencia <> "suficiente", text: "Descripción: " & Coalesce(Global.R_SuficienciaDetalle, "sin detalle.") },
+            { type: "TextBlock", size: "Small", wrap: true, isVisible: Global.R_Coherencia <> "coherente", text: "Coherencia: " & Coalesce(Global.R_CoherenciaDetalle, "sin detalle.") },
+
+            { type: "TextBlock", text: "Trazabilidad", weight: "Bolder", spacing: "Large", separator: true, wrap: true },
+            { type: "TextBlock", size: "Small", isSubtle: true, wrap: true, text: "Preflight " & Env.pft_VersionPreflight & " · Reglas " & Global.R_VersionReglas & " · Prompts " & Global.R_VersionPrompt & " · Tarifas " & Global.R_FechaTarifas },
+            { type: "TextBlock", size: "Small", isSubtle: true, wrap: true, spacing: "Medium", text: "_Orientación preliminar generada con IA. No constituye asesoramiento jurídico ni evaluación de conformidad. La clasificación debe validarla una persona responsable._" }
+          ],
+          actions: [
+            { type: "Action.Submit", title: "Confirmo que los datos son correctos", style: "positive", data: { actionSubmitId: "pft_ficha_confirmar" } },
+            { type: "Action.Submit", title: "Quiero corregir algo", data: { actionSubmitId: "pft_ficha_corregir" } }
+          ]
+        }
+      output:
+        binding:
+          actionSubmitId: Topic.actionSubmitId
+
+      outputType:
+        properties:
+          actionSubmitId: String
+
+    - kind: ConditionGroup
+      id: pftFichaCond
+      conditions:
+        - id: pftFichaCorregir
+          condition: =Topic.actionSubmitId = "pft_ficha_corregir"
+          displayName: Quiere corregir
+          actions:
+            - kind: AdaptiveCardPrompt
+              id: pftQueCorregir
+              displayName: Qué corregir
+              card: |-
+                ={
+                  type: "AdaptiveCard",
+                  '$schema': "http://adaptivecards.io/schemas/adaptive-card.json",
+                  version: "1.5",
+                  body: [
+                    { type: "TextBlock", text: "¿Qué quieres corregir?", weight: "Bolder", size: "Medium", wrap: true },
+                    { type: "TextBlock", text: "Te vuelvo a mostrar ese bloque, recalculo la evaluación y te enseño la ficha de nuevo.", isSubtle: true, wrap: true },
+                    { type: "Input.ChoiceSet", id: "bloque", style: "expanded", isRequired: true, errorMessage: "Elige un bloque.",
+                      choices: [
+                        { title: "Identificación (nombre, área, problema, propietario)", value: "A" },
+                        { title: "Valor (usuarios, minutos, usos, mantenimiento, retirada)", value: "B" },
+                        { title: "Funcionamiento (acciones, fuentes, páginas, usuarios externos)", value: "C" },
+                        { title: "Riesgo (datos personales, decisiones sobre personas, prácticas sensibles)", value: "D" }
+                      ] }
+                  ],
+                  actions: [
+                    { type: "Action.Submit", title: "Corregir este bloque", data: { actionSubmitId: "pft_ficha_elegirBloque" } }
+                  ]
+                }
+              output:
+                binding:
+                  actionSubmitId: Topic.actionSubmitId
+                  bloque: Topic.BloqueCorregir
+
+              outputType:
+                properties:
+                  actionSubmitId: String
+                  bloque: String
+
+            - kind: ConditionGroup
+              id: pftBloqueCond
+              conditions:
+                - id: pftCorrA
+                  condition: =Topic.BloqueCorregir = "A"
+                  displayName: Corregir identificación
+                  actions:
+                    - kind: BeginDialog
+                      id: pftGoA2
+                      displayName: Ir a bloque A
+                      dialog: pft_AgentTower.topic.EntrevistaAIdentificacin
+
+                    - kind: BeginDialog
+                      id: pftGoSuf2
+                      displayName: Ir a comprobar suficiencia
+                      dialog: pft_AgentTower.topic.Comprobarsuficiencia
+
+                - id: pftCorrB
+                  condition: =Topic.BloqueCorregir = "B"
+                  displayName: Corregir valor
+                  actions:
+                    - kind: BeginDialog
+                      id: pftGoB2
+                      displayName: Ir a bloque B
+                      dialog: pft_AgentTower.topic.EntrevistaBValor
+
+                - id: pftCorrC
+                  condition: =Topic.BloqueCorregir = "C"
+                  displayName: Corregir funcionamiento
+                  actions:
+                    - kind: BeginDialog
+                      id: pftGoC2
+                      displayName: Ir a bloque C
+                      dialog: pft_AgentTower.topic.EntrevistaCFuncionamiento
+
+                - id: pftCorrD
+                  condition: =Topic.BloqueCorregir = "D"
+                  displayName: Corregir riesgo
+                  actions:
+                    - kind: BeginDialog
+                      id: pftGoD2
+                      displayName: Ir a bloque D
+                      dialog: pft_AgentTower.topic.EntrevistaDRiesgo
+
+            - kind: BeginDialog
+              id: pftReClas
+              displayName: Volver a clasificar riesgo
+              dialog: pft_AgentTower.topic.Clasificarriesgo
+
+            - kind: BeginDialog
+              id: pftReCoh
+              displayName: Volver a revisar coherencia
+              dialog: pft_AgentTower.topic.Revisarcoherencia
+
+            - kind: BeginDialog
+              id: pftReCalc
+              displayName: Volver a calcular valor y coste
+              dialog: pft_AgentTower.topic.Calcularvalorycoste
+
+            - kind: BeginDialog
+              id: pftReDec
+              displayName: Volver a proponer decisión
+              dialog: pft_AgentTower.topic.Proponerdecisin
+
+            - kind: GotoAction
+              id: pftVolverFicha
+              actionId: pftFichaCard
+
+      elseActions:
+        - kind: SetVariable
+          id: pftConfirmada
+          displayName: Ficha confirmada
+          variable: Global.R_FichaConfirmada
+          value: =true
+
+        - kind: SendActivity
+          id: pftMsgConfirmada
+          displayName: Mensaje de confirmación
+          activity: Gracias. Has confirmado los datos de la ficha de {Global.P01_NombreAgente}. En esta versión de Preflight el envío a aprobación todavía no está activo; llegará con el flujo de aprobación.
+
+inputType: {}
+outputType: {}

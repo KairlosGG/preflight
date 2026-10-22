@@ -1,0 +1,10 @@
+<botcomponent schemaname="pft_AgentTower.topic.Mostrarficha">
+  <componenttype>9</componenttype>
+  <iscustomizable>0</iscustomizable>
+  <name>Mostrar ficha</name>
+  <parentbotid>
+    <schemaname>pft_AgentTower</schemaname>
+  </parentbotid>
+  <statecode>0</statecode>
+  <statuscode>1</statuscode>
+</botcomponent>

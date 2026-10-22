@@ -1,0 +1,11 @@
+<botcomponent schemaname="pft_AgentTower.GlobalVariableComponent.R_DecisionFinal">
+  <componenttype>12</componenttype>
+  <description>Resultado. Decisión propuesta por Preflight, por este orden: riesgo bloqueante (no_construir, no_construir_sin_asesoria, revision_juridica), información insuficiente (pedir_mas_informacion) y valor (no_construir_por_valor, piloto, construir). Las condiciones del riesgo (aprobación humana, aviso de IA) están en R_DecisionRiesgo. La confirma o cambia una persona en la aprobación.</description>
+  <iscustomizable>0</iscustomizable>
+  <name>R_DecisionFinal</name>
+  <parentbotid>
+    <schemaname>pft_AgentTower</schemaname>
+  </parentbotid>
+  <statecode>0</statecode>
+  <statuscode>1</statuscode>
+</botcomponent>

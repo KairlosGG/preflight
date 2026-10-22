@@ -1,5 +1,5 @@
 kind: Variable
-name: P08_CosteHoraEUR
+name: R_CreditosMesAlto
 scope: Conversation
 isExternalInitializationAllowed: false
 isOutputToExternalCallers: false

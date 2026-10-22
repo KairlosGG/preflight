@@ -1,0 +1,11 @@
+<botcomponent schemaname="pft_AgentTower.GlobalVariableComponent.R_AvisoAIBuilder">
+  <componenttype>12</componenttype>
+  <description>Resultado. Verdadero si el agente procesará páginas (P12 &gt; 0): la ficha avisa de que el procesamiento de contenido consume Copilot Credits y de los cambios en los créditos de AI Builder.</description>
+  <iscustomizable>0</iscustomizable>
+  <name>R_AvisoAIBuilder</name>
+  <parentbotid>
+    <schemaname>pft_AgentTower</schemaname>
+  </parentbotid>
+  <statecode>0</statecode>
+  <statuscode>1</statuscode>
+</botcomponent>

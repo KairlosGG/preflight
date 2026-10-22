@@ -1,0 +1,14 @@
+<environmentvariabledefinition schemaname="pft_Moneda">
+  <defaultvalue>EUR</defaultvalue>
+  <description default="Código ISO 4217 de la moneda en que se expresan pft_PrecioCredito, el coste por hora de la entrevista (P08) y los importes de la ficha. Valor por defecto: EUR. Cada organización lo ajusta al instalar junto con pft_PrecioCredito.">
+    <label description="Código ISO 4217 de la moneda en que se expresan pft_PrecioCredito, el coste por hora de la entrevista (P08) y los importes de la ficha. Valor por defecto: EUR. Cada organización lo ajusta al instalar junto con pft_PrecioCredito." languagecode="3082" />
+  </description>
+  <displayname default="Moneda">
+    <label description="Moneda" languagecode="3082" />
+  </displayname>
+  <introducedversion>0.1.0.7</introducedversion>
+  <iscustomizable>1</iscustomizable>
+  <isrequired>0</isrequired>
+  <secretstore>0</secretstore>
+  <type>100000000</type>
+</environmentvariabledefinition>

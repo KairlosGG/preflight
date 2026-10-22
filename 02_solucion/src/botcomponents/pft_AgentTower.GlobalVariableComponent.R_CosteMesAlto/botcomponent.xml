@@ -1,0 +1,11 @@
+<botcomponent schemaname="pft_AgentTower.GlobalVariableComponent.R_CosteMesAlto">
+  <componenttype>12</componenttype>
+  <description>Resultado. Coste mensual estimado, escenario alto: R_CreditosMesAlto × pft_PrecioCredito, en la moneda de pft_Moneda. Es el que usa el ratio de valor (criterio prudente).</description>
+  <iscustomizable>0</iscustomizable>
+  <name>R_CosteMesAlto</name>
+  <parentbotid>
+    <schemaname>pft_AgentTower</schemaname>
+  </parentbotid>
+  <statecode>0</statecode>
+  <statuscode>1</statuscode>
+</botcomponent>

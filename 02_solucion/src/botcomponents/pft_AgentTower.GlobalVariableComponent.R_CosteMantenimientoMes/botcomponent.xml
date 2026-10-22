@@ -1,0 +1,11 @@
+<botcomponent schemaname="pft_AgentTower.GlobalVariableComponent.R_CosteMantenimientoMes">
+  <componenttype>12</componenttype>
+  <description>Resultado. Coste mensual de mantenimiento: P09b × pft_CosteHora, en la moneda de pft_Moneda.</description>
+  <iscustomizable>0</iscustomizable>
+  <name>R_CosteMantenimientoMes</name>
+  <parentbotid>
+    <schemaname>pft_AgentTower</schemaname>
+  </parentbotid>
+  <statecode>0</statecode>
+  <statuscode>1</statuscode>
+</botcomponent>

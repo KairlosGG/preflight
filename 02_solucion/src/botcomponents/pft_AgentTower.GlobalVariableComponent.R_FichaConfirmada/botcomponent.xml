@@ -1,0 +1,11 @@
+<botcomponent schemaname="pft_AgentTower.GlobalVariableComponent.R_FichaConfirmada">
+  <componenttype>12</componenttype>
+  <description>Resultado. Verdadero cuando quien propone el agente confirma que los datos de la ficha son correctos. Es el paso previo al envío a aprobación.</description>
+  <iscustomizable>0</iscustomizable>
+  <name>R_FichaConfirmada</name>
+  <parentbotid>
+    <schemaname>pft_AgentTower</schemaname>
+  </parentbotid>
+  <statecode>0</statecode>
+  <statuscode>1</statuscode>
+</botcomponent>

@@ -1,0 +1,11 @@
+<botcomponent schemaname="pft_AgentTower.GlobalVariableComponent.R_Ratio">
+  <componenttype>12</componenttype>
+  <description>Resultado. Ratio de valor: R_ValorMes / (R_CosteMesAlto + R_CosteMantenimientoMes). Vacío si no hay coste.</description>
+  <iscustomizable>0</iscustomizable>
+  <name>R_Ratio</name>
+  <parentbotid>
+    <schemaname>pft_AgentTower</schemaname>
+  </parentbotid>
+  <statecode>0</statecode>
+  <statuscode>1</statuscode>
+</botcomponent>

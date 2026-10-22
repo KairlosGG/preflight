@@ -1,0 +1,23 @@
+kind: AdaptiveDialog
+beginDialog:
+  kind: OnRedirect
+  id: main
+  actions:
+    - kind: SetVariable
+      id: pftDecFinal
+      displayName: Decisión final
+      variable: Global.R_DecisionFinal
+      value: |-
+        =If(
+          Global.R_DecisionRiesgo = "no_construir", "no_construir",
+          Global.R_DecisionRiesgo = "no_construir_sin_asesoria", "no_construir_sin_asesoria",
+          Global.R_DecisionRiesgo = "revision_juridica", "revision_juridica",
+          Global.R_Suficiencia = "insuficiente", "pedir_mas_informacion",
+          Global.R_Coherencia = "a_revisar", "revisar_respuestas",
+          Global.R_DecisionValor = "no_construir_por_valor", "no_construir_por_valor",
+          Global.R_DecisionValor = "piloto", "piloto",
+          "construir"
+        )
+
+inputType: {}
+outputType: {}

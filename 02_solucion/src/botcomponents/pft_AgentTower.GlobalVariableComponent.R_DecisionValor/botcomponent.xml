@@ -1,0 +1,11 @@
+<botcomponent schemaname="pft_AgentTower.GlobalVariableComponent.R_DecisionValor">
+  <componenttype>12</componenttype>
+  <description>Resultado. Decisión por valor según el brief: no_construir_por_valor (ratio &lt; 1 o valor 0), piloto (1 a 3) o construir (&gt; 3 o sin coste). El riesgo prevalece siempre sobre el valor.</description>
+  <iscustomizable>0</iscustomizable>
+  <name>R_DecisionValor</name>
+  <parentbotid>
+    <schemaname>pft_AgentTower</schemaname>
+  </parentbotid>
+  <statecode>0</statecode>
+  <statuscode>1</statuscode>
+</botcomponent>

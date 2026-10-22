@@ -1,0 +1,11 @@
+<botcomponent schemaname="pft_AgentTower.GlobalVariableComponent.R_CreditosMesAlto">
+  <componenttype>12</componenttype>
+  <description>Resultado. Copilot Credits al mes, escenario alto: perfil de uso alto (ejemplos de facturación de Microsoft) más un margen del 20 %, descontados los usuarios internos con licencia de Microsoft 365 Copilot.</description>
+  <iscustomizable>0</iscustomizable>
+  <name>R_CreditosMesAlto</name>
+  <parentbotid>
+    <schemaname>pft_AgentTower</schemaname>
+  </parentbotid>
+  <statecode>0</statecode>
+  <statuscode>1</statuscode>
+</botcomponent>

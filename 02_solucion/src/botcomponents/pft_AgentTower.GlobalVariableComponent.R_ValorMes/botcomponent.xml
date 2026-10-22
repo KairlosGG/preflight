@@ -1,0 +1,11 @@
+<botcomponent schemaname="pft_AgentTower.GlobalVariableComponent.R_ValorMes">
+  <componenttype>12</componenttype>
+  <description>Resultado. Valor mensual estimado: usuarios × usos al mes × minutos ahorrados / 60 × pft_CosteHora × 0,5 (factor prudente del brief), en la moneda de pft_Moneda.</description>
+  <iscustomizable>0</iscustomizable>
+  <name>R_ValorMes</name>
+  <parentbotid>
+    <schemaname>pft_AgentTower</schemaname>
+  </parentbotid>
+  <statecode>0</statecode>
+  <statuscode>1</statuscode>
+</botcomponent>

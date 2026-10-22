@@ -1,5 +1,23 @@
 <botcomponent_environmentvariabledefinitionset>
+  <botcomponent_environmentvariabledefinition botcomponentid.schemaname="pft_AgentTower.topic.Calcularvalorycoste" environmentvariabledefinitionid.schemaname="pft_CosteHora">
+    <iscustomizable>1</iscustomizable>
+  </botcomponent_environmentvariabledefinition>
+  <botcomponent_environmentvariabledefinition botcomponentid.schemaname="pft_AgentTower.topic.Calcularvalorycoste" environmentvariabledefinitionid.schemaname="pft_PrecioCredito">
+    <iscustomizable>1</iscustomizable>
+  </botcomponent_environmentvariabledefinition>
   <botcomponent_environmentvariabledefinition botcomponentid.schemaname="pft_AgentTower.topic.Clasificarriesgo" environmentvariabledefinitionid.schemaname="pft_VersionReglas">
+    <iscustomizable>1</iscustomizable>
+  </botcomponent_environmentvariabledefinition>
+  <botcomponent_environmentvariabledefinition botcomponentid.schemaname="pft_AgentTower.topic.Mostrarficha" environmentvariabledefinitionid.schemaname="pft_CosteHora">
+    <iscustomizable>1</iscustomizable>
+  </botcomponent_environmentvariabledefinition>
+  <botcomponent_environmentvariabledefinition botcomponentid.schemaname="pft_AgentTower.topic.Mostrarficha" environmentvariabledefinitionid.schemaname="pft_Moneda">
+    <iscustomizable>1</iscustomizable>
+  </botcomponent_environmentvariabledefinition>
+  <botcomponent_environmentvariabledefinition botcomponentid.schemaname="pft_AgentTower.topic.Mostrarficha" environmentvariabledefinitionid.schemaname="pft_PrecioCredito">
+    <iscustomizable>1</iscustomizable>
+  </botcomponent_environmentvariabledefinition>
+  <botcomponent_environmentvariabledefinition botcomponentid.schemaname="pft_AgentTower.topic.Mostrarficha" environmentvariabledefinitionid.schemaname="pft_VersionPreflight">
     <iscustomizable>1</iscustomizable>
   </botcomponent_environmentvariabledefinition>
   <botcomponent_environmentvariabledefinition botcomponentid.schemaname="pft_AgentTower.topic.Revisarcoherencia" environmentvariabledefinitionid.schemaname="pft_VersionPrompts">

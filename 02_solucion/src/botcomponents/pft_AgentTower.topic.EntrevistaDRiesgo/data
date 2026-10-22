@@ -35,11 +35,6 @@ beginDialog:
                 { title: "Emergencias: clasificación de llamadas, envío de servicios de emergencia o triaje de pacientes", value: "III_5d" },
                 { title: "Otro ámbito sensible: biometría, infraestructuras críticas, aplicación de la ley, migración y fronteras, justicia o procesos electorales", value: "III_otro" }
               ] },
-            { type: "Input.ChoiceSet", id: "revisionHumana", label: "¿Una persona revisará cada resultado antes de que tenga efecto?", value: Global.P16_RevisionHumana, style: "expanded", isRequired: true, errorMessage: "Elige una opción.",
-              choices: [
-                { title: "Sí, una persona revisa cada resultado y decide", value: "si" },
-                { title: "No, el resultado tiene efecto sin revisión previa", value: "no" }
-              ] },
             { type: "Input.ChoiceSet", id: "perfilado", label: "¿Elaborará perfiles o puntuaciones de personas (evaluar o predecir su rendimiento, situación económica, salud, preferencias, fiabilidad o comportamiento)?", value: Global.P17_Perfilado, style: "expanded", isRequired: true, errorMessage: "Elige una opción.",
               choices: [
                 { title: "Sí", value: "si" },
@@ -77,7 +72,6 @@ beginDialog:
           perfilado: Global.P17_Perfilado
           practicasSensibles: Global.P19_PracticasSensibles
           publicacionExterna: Global.P18_PublicacionExterna
-          revisionHumana: Global.P16_RevisionHumana
 
       outputType:
         properties:
@@ -88,7 +82,6 @@ beginDialog:
           perfilado: String
           practicasSensibles: String
           publicacionExterna: String
-          revisionHumana: String
 
     - kind: ConditionGroup
       id: conditionGroup_pftAmb1
@@ -213,15 +206,20 @@ beginDialog:
           actions:
             - kind: AdaptiveCardPrompt
               id: pftExc63
-              displayName: Tarjeta D Excepción 6.3
+              displayName: Tarjeta D Anexo III
               card: |-
                 ={
                   type: "AdaptiveCard",
                   '$schema': "http://adaptivecards.io/schemas/adaptive-card.json",
                   version: "1.5",
                   body: [
-                    { type: "TextBlock", text: "Papel del agente en la decisión", weight: "Bolder", size: "Medium", wrap: true },
-                    { type: "TextBlock", text: "Has marcado al menos un ámbito del Anexo III del AI Act. Esta respuesta sirve para valorar si podría aplicarse la excepción del artículo 6.3. Lo confirmará una persona responsable.", wrap: true, isSubtle: true },
+                    { type: "TextBlock", text: "Papel de las personas y del agente en la decisión", weight: "Bolder", size: "Medium", wrap: true },
+                    { type: "TextBlock", text: "Has marcado al menos un ámbito en el que el agente influye en decisiones sobre personas. Estas dos respuestas sirven para valorar la excepción del artículo 6.3 del AI Act y si hay una decisión automatizada (artículo 22 del RGPD). Lo confirmará una persona responsable.", wrap: true, isSubtle: true },
+                    { type: "Input.ChoiceSet", id: "revisionHumana", label: "¿Una persona revisará cada resultado antes de que tenga efecto?", style: "expanded", isRequired: true, errorMessage: "Elige una opción.",
+                      choices: [
+                        { title: "Sí, una persona revisa cada resultado y decide", value: "si" },
+                        { title: "No, el resultado tiene efecto sin revisión previa", value: "no" }
+                      ] },
                     { type: "Input.ChoiceSet", id: "tareaArt6_3", label: "¿Qué opción describe mejor lo que hará el agente?", style: "expanded", isRequired: true, errorMessage: "Elige una opción.",
                       choices: [
                         { title: "Una tarea procedimental limitada (por ejemplo, ordenar, clasificar o convertir documentos)", value: "art6_3a" },
@@ -238,12 +236,25 @@ beginDialog:
               output:
                 binding:
                   actionSubmitId: Topic.actionSubmitId
+                  revisionHumana: Global.P16_RevisionHumana
                   tareaArt6_3: Global.P15b_TareaArt6_3
 
               outputType:
                 properties:
                   actionSubmitId: String
+                  revisionHumana: String
                   tareaArt6_3: String
+
+      elseActions:
+        - kind: SetMultipleVariables
+          id: pftSinAmbito
+          displayName: Sin ámbito, vaciar revisión y tarea 6.3
+          assignments:
+            - variable: Global.P16_RevisionHumana
+              value: =Blank()
+
+            - variable: Global.P15b_TareaArt6_3
+              value: =Blank()
 
 inputType: {}
 outputType: {}
